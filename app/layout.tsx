@@ -9,7 +9,7 @@ const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Chomp | Stealth Startup",
-  description: "Building in private. For the new social media and hustler revolution.",
+  description: "For the new social media and hustler revolution.",
   generator: "v0.app",
   icons: {
     icon: [
