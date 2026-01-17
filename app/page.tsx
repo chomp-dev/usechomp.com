@@ -22,15 +22,20 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
         {/* Abstract Network Visualization (Navigation Algorithm Theme) */}
-        <div className="absolute inset-0 opacity-50 pointer-events-none">
-          {/* Zoomed out slightly to show more context (0 0 800 600) */}
+        <div className="absolute inset-0 opacity-60 pointer-events-none">
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(251, 146, 60, 0.2)" />
-                <stop offset="50%" stopColor="rgba(251, 146, 60, 0.6)" />
-                <stop offset="100%" stopColor="rgba(251, 146, 60, 0.2)" />
+                <stop offset="0%" stopColor="rgba(251, 146, 60, 0.1)" />
+                <stop offset="50%" stopColor="rgba(251, 146, 60, 0.5)" />
+                <stop offset="100%" stopColor="rgba(251, 146, 60, 0.1)" />
               </linearGradient>
+
+              {/* Glow Filter */}
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
             </defs>
 
             {/* Background Grid - Subtle Reference Frame */}
@@ -49,50 +54,76 @@ export default function HomePage() {
               <line x1="700" y1="0" x2="700" y2="600" />
             </g>
 
-            {/* Network Graph - "Navigation Routes" */}
-            <g stroke="url(#line-gradient)" strokeWidth="1.5" fill="none">
-              <path id="path1" d="M 100 500 L 300 400 L 500 200 L 700 100" />
-              <path id="path2" d="M 100 100 L 300 200 L 500 300 L 700 500" />
-              <path id="path3" d="M 400 50 L 400 550" strokeOpacity="0.4" />
-              <path id="path4" d="M 50 300 L 750 300" strokeOpacity="0.4" />
+            {/* Network Graph - Denser Connections with Glow */}
+            <g stroke="url(#line-gradient)" strokeWidth="1.5" fill="none" filter="url(#glow)">
+              {/* Main Routes */}
+              <path id="path1" d="M 50 500 L 250 400 L 450 200 L 750 100" />
+              <path id="path2" d="M 50 100 L 250 200 L 450 300 L 750 500" />
+              <path id="path3" d="M 400 50 L 400 550" />
+              <path id="path4" d="M 50 300 L 750 300" />
 
-              {/* Connecting Segments */}
-              <line x1="300" y1="400" x2="300" y2="200" strokeOpacity="0.5" />
-              <line x1="500" y1="200" x2="500" y2="300" strokeOpacity="0.5" />
-              <line x1="300" y1="200" x2="500" y2="200" strokeOpacity="0.5" />
+              {/* Additional Density Lines */}
+              <path id="path5" d="M 150 550 L 150 50" strokeOpacity="0.3" />
+              <path id="path6" d="M 650 50 L 650 550" strokeOpacity="0.3" />
+              <path id="path7" d="M 250 200 L 450 200" strokeOpacity="0.4" />
+              <path id="path8" d="M 250 400 L 450 400" strokeOpacity="0.4" />
+              <line x1="250" y1="200" x2="250" y2="400" strokeOpacity="0.4" />
+              <line x1="450" y1="200" x2="450" y2="400" strokeOpacity="0.4" />
+
+              {/* Diagonals */}
+              <path id="path9" d="M 250 200 L 400 50" strokeOpacity="0.3" />
+              <path id="path10" d="M 450 400 L 650 550" strokeOpacity="0.3" />
             </g>
 
             {/* Nodes - Static Waypoints */}
-            <g fill="rgba(251, 146, 60, 0.8)">
-              <circle cx="100" cy="500" r="3" />
-              <circle cx="300" cy="400" r="4" />
-              <circle cx="500" cy="200" r="4" />
-              <circle cx="700" cy="100" r="3" />
+            <g fill="rgba(251, 146, 60, 0.8)" filter="url(#glow)">
+              <circle cx="50" cy="500" r="3" />
+              <circle cx="250" cy="400" r="4" />
+              <circle cx="450" cy="200" r="4" />
+              <circle cx="750" cy="100" r="3" />
 
-              <circle cx="100" cy="100" r="3" />
-              <circle cx="300" cy="200" r="4" />
-              <circle cx="500" cy="300" r="4" />
-              <circle cx="700" cy="500" r="3" />
+              <circle cx="50" cy="100" r="3" />
+              <circle cx="250" cy="200" r="4" />
+              <circle cx="450" cy="300" r="4" />
+              <circle cx="750" cy="500" r="3" />
+
+              <circle cx="400" cy="300" r="4" />
+              <circle cx="150" cy="300" r="3" />
+              <circle cx="650" cy="300" r="3" />
             </g>
 
             {/* Moving Dots - Strictly Following Paths */}
-            <circle r="4" fill="#fb923c">
-              <animateMotion repeatCount="indefinite" dur="8s" keyPoints="0;1" keyTimes="0;1">
-                <mpath href="#path1" />
-              </animateMotion>
-            </circle>
+            <g fill="#fb923c" filter="url(#glow)">
+              <circle r="4">
+                <animateMotion repeatCount="indefinite" dur="8s" keyPoints="0;1" keyTimes="0;1">
+                  <mpath href="#path1" />
+                </animateMotion>
+              </circle>
 
-            <circle r="4" fill="#fb923c">
-              <animateMotion repeatCount="indefinite" dur="10s" keyPoints="1;0" keyTimes="0;1">
-                <mpath href="#path2" />
-              </animateMotion>
-            </circle>
+              <circle r="4">
+                <animateMotion repeatCount="indefinite" dur="10s" keyPoints="1;0" keyTimes="0;1">
+                  <mpath href="#path2" />
+                </animateMotion>
+              </circle>
 
-            <circle r="3" fill="#fb923c" opacity="0.7">
-              <animateMotion repeatCount="indefinite" dur="12s" keyPoints="0;1" keyTimes="0;1">
-                <mpath href="#path3" />
-              </animateMotion>
-            </circle>
+              <circle r="3" opacity="0.8">
+                <animateMotion repeatCount="indefinite" dur="6s" keyPoints="0;1" keyTimes="0;1">
+                  <mpath href="#path3" />
+                </animateMotion>
+              </circle>
+
+              <circle r="3" opacity="0.8">
+                <animateMotion repeatCount="indefinite" dur="12s" keyPoints="0;1" keyTimes="0;1">
+                  <mpath href="#path4" />
+                </animateMotion>
+              </circle>
+
+              <circle r="2" opacity="0.6">
+                <animateMotion repeatCount="indefinite" dur="15s" keyPoints="0;1" keyTimes="0;1">
+                  <mpath href="#path5" />
+                </animateMotion>
+              </circle>
+            </g>
 
           </svg>
 
@@ -117,17 +148,17 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-12">
             <Button
               onClick={scrollToDeck}
-              className="bg-white text-black hover:bg-gray-200 text-lg px-12 py-8 rounded-full font-medium transition-transform hover:scale-105 shadow-xl shadow-white/10"
+              className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 rounded-full font-medium transition-transform hover:scale-105"
             >
               Request deck
             </Button>
 
             <Button
               asChild
-              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-lg px-12 py-8 rounded-full transition-all shadow-xl shadow-orange-600/20 hover:shadow-orange-600/40"
+              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-lg px-10 py-7 rounded-full transition-all shadow-lg shadow-orange-900/20"
             >
               <a href="mailto:Business@usechomp.com">
                 Contact us
