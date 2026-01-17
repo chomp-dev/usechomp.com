@@ -22,7 +22,7 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
         {/* Abstract Network Visualization (Navigation Algorithm Theme) */}
-        <div className="absolute inset-0 opacity-60 pointer-events-none">
+        <div className="absolute inset-0 opacity-80 pointer-events-none">
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -31,15 +31,22 @@ export default function HomePage() {
                 <stop offset="100%" stopColor="rgba(251, 146, 60, 0.1)" />
               </linearGradient>
 
-              {/* Glow Filter */}
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              {/* Enhanced Glow Filter - Ambient & Bright */}
+              <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+                {/* Layer 1: Tight intense glow */}
+                <feGaussianBlur stdDeviation="1.5" result="blur1" />
+                {/* Layer 2: Wide ambient glow */}
+                <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2" />
+                <feMerge>
+                  <feMergeNode in="blur2" />
+                  <feMergeNode in="blur1" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
               </filter>
             </defs>
 
             {/* Background Grid - Subtle Reference Frame */}
-            <g stroke="rgba(255,255,255,0.03)" strokeWidth="0.5">
+            <g stroke="rgba(251, 146, 60, 0.15)" strokeWidth="0.5">
               <line x1="0" y1="100" x2="800" y2="100" />
               <line x1="0" y1="200" x2="800" y2="200" />
               <line x1="0" y1="300" x2="800" y2="300" />
@@ -54,71 +61,71 @@ export default function HomePage() {
               <line x1="700" y1="0" x2="700" y2="600" />
             </g>
 
-            {/* Network Graph - Denser Connections with Glow */}
-            <g stroke="url(#line-gradient)" strokeWidth="1.5" fill="none" filter="url(#glow)">
+            {/* Network Graph - Visible Connections with Glow */}
+            <g stroke="url(#line-gradient)" strokeWidth="1" fill="none" filter="url(#glow)">
               {/* Main Routes */}
               <path id="path1" d="M 50 500 L 250 400 L 450 200 L 750 100" />
               <path id="path2" d="M 50 100 L 250 200 L 450 300 L 750 500" />
               <path id="path3" d="M 400 50 L 400 550" />
               <path id="path4" d="M 50 300 L 750 300" />
 
-              {/* Additional Density Lines */}
-              <path id="path5" d="M 150 550 L 150 50" strokeOpacity="0.3" />
-              <path id="path6" d="M 650 50 L 650 550" strokeOpacity="0.3" />
-              <path id="path7" d="M 250 200 L 450 200" strokeOpacity="0.4" />
-              <path id="path8" d="M 250 400 L 450 400" strokeOpacity="0.4" />
-              <line x1="250" y1="200" x2="250" y2="400" strokeOpacity="0.4" />
-              <line x1="450" y1="200" x2="450" y2="400" strokeOpacity="0.4" />
+              {/* Additional Density Lines - Increased Opacity for Visibility */}
+              <path id="path5" d="M 150 550 L 150 50" strokeOpacity="0.5" />
+              <path id="path6" d="M 650 50 L 650 550" strokeOpacity="0.5" />
+              <path id="path7" d="M 250 200 L 450 200" strokeOpacity="0.6" />
+              <path id="path8" d="M 250 400 L 450 400" strokeOpacity="0.6" />
+              <line x1="250" y1="200" x2="250" y2="400" strokeOpacity="0.6" />
+              <line x1="450" y1="200" x2="450" y2="400" strokeOpacity="0.6" />
 
               {/* Diagonals */}
-              <path id="path9" d="M 250 200 L 400 50" strokeOpacity="0.3" />
-              <path id="path10" d="M 450 400 L 650 550" strokeOpacity="0.3" />
+              <path id="path9" d="M 250 200 L 400 50" strokeOpacity="0.5" />
+              <path id="path10" d="M 450 400 L 650 550" strokeOpacity="0.5" />
             </g>
 
-            {/* Nodes - Static Waypoints */}
-            <g fill="rgba(251, 146, 60, 0.8)" filter="url(#glow)">
-              <circle cx="50" cy="500" r="3" />
-              <circle cx="250" cy="400" r="4" />
-              <circle cx="450" cy="200" r="4" />
-              <circle cx="750" cy="100" r="3" />
+            {/* Nodes - Small Static Waypoints */}
+            <g fill="rgba(251, 146, 60, 0.9)" filter="url(#glow)">
+              <circle cx="50" cy="500" r="2" />
+              <circle cx="250" cy="400" r="2.5" />
+              <circle cx="450" cy="200" r="2.5" />
+              <circle cx="750" cy="100" r="2" />
 
-              <circle cx="50" cy="100" r="3" />
-              <circle cx="250" cy="200" r="4" />
-              <circle cx="450" cy="300" r="4" />
-              <circle cx="750" cy="500" r="3" />
+              <circle cx="50" cy="100" r="2" />
+              <circle cx="250" cy="200" r="2.5" />
+              <circle cx="450" cy="300" r="2.5" />
+              <circle cx="750" cy="500" r="2" />
 
-              <circle cx="400" cy="300" r="4" />
-              <circle cx="150" cy="300" r="3" />
-              <circle cx="650" cy="300" r="3" />
+              <circle cx="400" cy="300" r="2.5" />
+              <circle cx="150" cy="300" r="2" />
+              <circle cx="650" cy="300" r="2" />
             </g>
 
-            {/* Moving Dots - Strictly Following Paths */}
-            <g fill="#fb923c" filter="url(#glow)">
-              <circle r="4">
+            {/* Moving Dots - Smaller & Brighter */}
+            <g fill="#fff" filter="url(#glow)"> {/* White fill + orange glow = super bright */}
+              <circle r="2">
                 <animateMotion repeatCount="indefinite" dur="8s" keyPoints="0;1" keyTimes="0;1">
                   <mpath href="#path1" />
                 </animateMotion>
               </circle>
 
-              <circle r="4">
+              <circle r="2">
                 <animateMotion repeatCount="indefinite" dur="10s" keyPoints="1;0" keyTimes="0;1">
                   <mpath href="#path2" />
                 </animateMotion>
               </circle>
 
-              <circle r="3" opacity="0.8">
+              <circle r="1.5">
                 <animateMotion repeatCount="indefinite" dur="6s" keyPoints="0;1" keyTimes="0;1">
                   <mpath href="#path3" />
                 </animateMotion>
               </circle>
 
-              <circle r="3" opacity="0.8">
+              <circle r="1.5">
                 <animateMotion repeatCount="indefinite" dur="12s" keyPoints="0;1" keyTimes="0;1">
                   <mpath href="#path4" />
                 </animateMotion>
               </circle>
 
-              <circle r="2" opacity="0.6">
+              <circle r="1.5">
                 <animateMotion repeatCount="indefinite" dur="15s" keyPoints="0;1" keyTimes="0;1">
                   <mpath href="#path5" />
                 </animateMotion>
@@ -127,8 +134,8 @@ export default function HomePage() {
 
           </svg>
 
-          {/* Dark Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+          {/* Dark Overlay Gradient - slightly lighter to reveal lines */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
         </div>
 
         <div className="relative z-10 space-y-8 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000">
