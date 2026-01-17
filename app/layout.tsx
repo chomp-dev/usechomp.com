@@ -8,8 +8,8 @@ const _spaceGrotesk = Space_Grotesk({ subsets: ["latin"] })
 const _jetbrainsMono = JetBrains_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Software Engineer Intern Application - Spring/Summer 2026",
-  description: "Apply for our Spring/Summer 2026 Software Engineer Internship position in Chicago",
+  title: "Chomp | Stealth Startup",
+  description: "Building in private. For the new social media and hustler revolution.",
   generator: "v0.app",
   icons: {
     icon: [
