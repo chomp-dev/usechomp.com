@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, Mail, Linkedin } from "lucide-react"
 
 export default function HomePage() {
   const scrollToDeck = () => {
@@ -21,69 +21,79 @@ export default function HomePage() {
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
-        {/* Background Elements - Restored Wireframe Globe */}
-        <div className="absolute inset-0 opacity-60 pointer-events-none">
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-            {/* Latitude lines */}
-            <ellipse cx="200" cy="200" rx="150" ry="150" fill="none" stroke="rgba(251, 146, 60, 0.7)" strokeWidth="2" />
-            <ellipse cx="200" cy="200" rx="150" ry="100" fill="none" stroke="rgba(251, 146, 60, 0.5)" strokeWidth="1.5" />
-            <ellipse cx="200" cy="200" rx="150" ry="50" fill="none" stroke="rgba(251, 146, 60, 0.5)" strokeWidth="1.5" />
+        {/* Abstract Network Visualization (Darker & More Connected) */}
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(251, 146, 60, 0.1)" />
+                <stop offset="50%" stopColor="rgba(251, 146, 60, 0.4)" />
+                <stop offset="100%" stopColor="rgba(251, 146, 60, 0.1)" />
+              </linearGradient>
+            </defs>
 
-            {/* Longitude lines */}
-            <ellipse cx="200" cy="200" rx="150" ry="150" fill="none" stroke="rgba(251, 146, 60, 0.6)" strokeWidth="1.5" />
-            <ellipse cx="200" cy="200" rx="100" ry="150" fill="none" stroke="rgba(251, 146, 60, 0.5)" strokeWidth="1.5" />
-            <ellipse cx="200" cy="200" rx="50" ry="150" fill="none" stroke="rgba(251, 146, 60, 0.5)" strokeWidth="1.5" />
+            {/* Connected Network Lines */}
+            <g stroke="url(#line-gradient)" strokeWidth="1">
+              <line x1="100" y1="100" x2="300" y2="200" className="animate-pulse duration-1000" />
+              <line x1="300" y1="200" x2="500" y2="150" />
+              <line x1="500" y1="150" x2="700" y2="300" />
+              <line x1="700" y1="300" x2="600" y2="500" />
+              <line x1="600" y1="500" x2="400" y2="450" />
+              <line x1="400" y1="450" x2="200" y2="500" />
+              <line x1="200" y1="500" x2="100" y2="300" />
+              <line x1="100" y1="300" x2="100" y2="100" />
 
-            {/* Equator */}
-            <line x1="50" y1="200" x2="350" y2="200" stroke="rgba(251, 146, 60, 0.8)" strokeWidth="2" />
+              {/* Cross Connections */}
+              <line x1="300" y1="200" x2="400" y2="450" strokeOpacity="0.5" />
+              <line x1="500" y1="150" x2="200" y2="500" strokeOpacity="0.5" />
+              <line x1="100" y1="300" x2="600" y2="500" strokeOpacity="0.5" />
+            </g>
 
-            {/* Navigation path markers */}
-            <circle cx="200" cy="200" r="4" fill="rgb(251, 146, 60)" className="animate-nav-path-1" />
-            <circle cx="200" cy="200" r="4" fill="rgb(251, 146, 60)" className="animate-nav-path-2" />
-            <circle cx="200" cy="200" r="4" fill="rgb(251, 146, 60)" className="animate-nav-path-3" />
-            <circle cx="200" cy="200" r="4" fill="rgb(251, 146, 60)" className="animate-nav-path-4" />
+            {/* Nodes */}
+            <g fill="rgba(251, 146, 60, 0.6)">
+              <circle cx="100" cy="100" r="3" className="animate-ping" style={{ animationDuration: '3s' }} />
+              <circle cx="300" cy="200" r="4" />
+              <circle cx="500" cy="150" r="3" />
+              <circle cx="700" cy="300" r="5" className="animate-ping" style={{ animationDuration: '4s' }} />
+              <circle cx="600" cy="500" r="3" />
+              <circle cx="400" cy="450" r="4" />
+              <circle cx="200" cy="500" r="3" />
+              <circle cx="100" cy="300" r="4" />
+            </g>
 
-            {/* Navigation route lines */}
-            <path d="M 80 200 Q 140 120, 200 80 T 320 200" fill="none" stroke="rgba(251, 146, 60, 0.6)" strokeWidth="2" strokeDasharray="8,4" className="animate-dash-flow" />
-            <path d="M 200 80 Q 260 140, 280 200 T 200 320" fill="none" stroke="rgba(251, 146, 60, 0.6)" strokeWidth="2" strokeDasharray="8,4" className="animate-dash-flow-reverse" />
           </svg>
 
-          {/* Floating location pins */}
-          <div className="absolute inset-0 animate-pins-float">
-            <div className="absolute top-[30%] left-[25%] w-3 h-3 bg-orange-500 rounded-full opacity-80 shadow-lg shadow-orange-500/50"></div>
-            <div className="absolute top-[45%] right-[30%] w-3 h-3 bg-orange-400 rounded-full opacity-80 shadow-lg shadow-orange-400/50"></div>
-            <div className="absolute bottom-[35%] left-[50%] w-3 h-3 bg-orange-500 rounded-full opacity-80 shadow-lg shadow-orange-500/50"></div>
-            <div className="absolute top-[55%] left-[35%] w-3 h-3 bg-orange-400 rounded-full opacity-80 shadow-lg shadow-orange-400/50"></div>
-          </div>
+          {/* Dark Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </div>
 
         <div className="relative z-10 space-y-8 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000">
 
-          <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white/90">
+          <h1 className="text-7xl md:text-9xl font-bold tracking-tighter text-white/95 drop-shadow-2xl">
             Chomp
           </h1>
 
-          <div className="space-y-4">
-            <h2 className="text-xl md:text-2xl text-gray-400 font-light tracking-wide uppercase">
+          <div className="space-y-6">
+            <h2 className="text-xl md:text-2xl text-gray-400 font-light tracking-[0.2em] uppercase">
               Stealth startup
             </h2>
 
-            <p className="text-3xl md:text-5xl font-light leading-tight max-w-3xl mx-auto pt-4 text-gray-100 italic">
+            <p className="text-3xl md:text-5xl font-light leading-tight max-w-3xl mx-auto pt-2 text-gray-100 italic drop-shadow-lg">
               “For the new social media hustler revolution.”
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center pt-16">
             <Button
               onClick={scrollToDeck}
-              className="bg-white text-black hover:bg-gray-200 text-lg px-10 py-7 rounded-full font-medium transition-transform hover:scale-105"
+              className="bg-white text-black hover:bg-gray-200 text-lg px-12 py-8 rounded-full font-medium transition-transform hover:scale-105 shadow-xl shadow-white/10"
             >
               Request deck
             </Button>
 
             <Button
               asChild
-              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-lg px-10 py-7 rounded-full transition-all shadow-lg shadow-orange-900/20"
+              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-lg px-12 py-8 rounded-full transition-all shadow-xl shadow-orange-600/20 hover:shadow-orange-600/40"
             >
               <a href="mailto:Business@usechomp.com">
                 Contact us
@@ -132,7 +142,7 @@ export default function HomePage() {
               name="Haoran Xu"
               role="Co-Founder"
               school="UIUC"
-              tag="AI / Data Science"
+              tag="Prev @ OSG"
               linkedin="https://www.linkedin.com/in/haoranxu808/"
             />
           </div>
@@ -161,12 +171,12 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
                 placeholder="Name"
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
                 required
               />
               <Input
                 placeholder="Firm / Program"
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
                 required
               />
             </div>
@@ -174,18 +184,18 @@ export default function HomePage() {
             <Input
               type="email"
               placeholder="Work Email"
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
               required
             />
 
             <Textarea
               placeholder="What stage / check size? (Optional)"
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 min-h-[100px] resize-none"
+              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 min-h-[100px] resize-none transition-all focus:bg-white/10"
             />
 
             <Button
               type="submit"
-              className="w-full bg-white text-black hover:bg-gray-200 h-12 text-lg font-medium"
+              className="w-full bg-white text-black hover:bg-gray-200 h-12 text-lg font-medium transition-transform hover:scale-[1.02]"
             >
               Request Deck
             </Button>
@@ -221,23 +231,33 @@ export default function HomePage() {
 
 function TeamMember({ name, role, school, tag, linkedin }: { name: string, role: string, school: string, tag: string, linkedin?: string }) {
   return (
-    <div className="group p-8 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-center">
+    <div className="group p-8 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 text-center hover:-translate-y-1">
       {/* Optional Placeholder Headshot */}
-      <div className="w-24 h-24 mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-full mb-6 flex items-center justify-center text-3xl font-serif text-gray-600 group-hover:text-gray-400 transition-colors shadow-xl shadow-black/50">
+      <div className="w-24 h-24 mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-full mb-6 flex items-center justify-center text-3xl font-serif text-gray-600 group-hover:text-gray-400 transition-colors shadow-2xl shadow-black/50">
         {name.charAt(0)}
       </div>
 
-      <h4 className="text-xl font-medium text-white mb-2">
-        {linkedin ? (
-          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">
-            {name}
+      <div className="flex items-center justify-center gap-2 mb-2">
+        <h4 className="text-xl font-medium text-white">
+          {name}
+        </h4>
+        {linkedin && (
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-[#0077b5] transition-colors"
+            title="LinkedIn Profile"
+          >
+            <Linkedin className="w-5 h-5" />
           </a>
-        ) : name}
-      </h4>
-      <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide font-medium">{role}</p>
-      <p className="text-sm text-gray-500 mb-4">{school}</p>
+        )}
+      </div>
 
-      <Badge variant="secondary" className="bg-orange-500/10 text-orange-400 hover:bg-orange-500/20 font-normal text-xs pointer-events-none px-3 py-1 border border-orange-500/20">
+      <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide font-medium">{role}</p>
+      <p className="text-sm text-gray-500 mb-5">{school}</p>
+
+      <Badge variant="secondary" className="bg-orange-500/5 text-orange-400/90 font-normal text-xs pointer-events-none px-3 py-1 border border-orange-500/10 whitespace-nowrap">
         {tag}
       </Badge>
     </div>
