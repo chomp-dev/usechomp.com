@@ -151,7 +151,7 @@ export default function HomePage() {
 
             {/* Expanded max-width and adjusted font size for single line */}
             <p className="text-xl md:text-4xl lg:text-5xl font-light leading-snug w-full mx-auto pt-2 text-gray-100 italic drop-shadow-lg">
-              “For the Social Media Hustler Revolution.”
+              “Revolutionizing Food Discovery
             </p>
           </div>
 
