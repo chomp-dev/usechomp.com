@@ -188,7 +188,7 @@ export default function HomePage() {
             <TeamMember
               name="Matthew Lee"
               role="Co-Founder"
-              school="CS + Econ @ UIUC"
+              school="Econ @ UIUC"
               // tag="Ex-Lunar Media"
               linkedin="https://www.linkedin.com/in/matthew-lee06/"
             />
