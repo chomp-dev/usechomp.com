@@ -145,13 +145,13 @@ export default function HomePage() {
           </h1>
 
           <div className="space-y-6 px-4">
-            <h2 className="text-sm md:text-xl lg:text-2xl text-gray-400 font-light tracking-[0.2em] uppercase">
+            {/* <h2 className="text-sm md:text-xl lg:text-2xl text-gray-400 font-light tracking-[0.2em] uppercase">
               Stealth startup
-            </h2>
+            </h2> */}
 
             {/* Expanded max-width and adjusted font size for single line */}
             <p className="text-xl md:text-4xl lg:text-5xl font-light leading-snug w-full mx-auto pt-2 text-gray-100 italic drop-shadow-lg">
-              “Revolutionizing Food Discovery
+              Revolutionizing Food Discovery
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export default function HomePage() {
 
             <Button
               asChild
-              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-base md:text-lg px-8 py-6 md:px-10 md:py-7 rounded-full transition-all shadow-lg shadow-orange-900/20"
+              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-base md:text-lg px-8 py-6 md:px-10 md:py-7 rounded-full transition-all shadow-lg shadow-orange-900/20 hover:scale-105"
             >
               <a href="mailto:Business@usechomp.com">
                 Contact us
@@ -179,15 +179,15 @@ export default function HomePage() {
       {/* --- TEAM SECTION --- */}
       <section className="py-24 px-4 bg-black relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-light text-gray-500 mb-16 text-center uppercase tracking-widest border-b border-white/10 pb-8 mx-auto max-w-xs">The Team</h3>
+          <h3 className="text-2xl font-light text-gray-500 mb-16 text-center uppercase tracking-widest border-b border-white/10 pb-8 mx-auto max-w-xs">Meet The Founders</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brian Li */}
             <TeamMember
               name="Brian Li"
               role="Co-Founder"
-              school="UIUC"
-              tag="Incoming SWE @ Roblox"
+              school="CS @ UIUC"
+              // tag="Incoming SWE @ Roblox"
               linkedin="https://www.linkedin.com/in/librianli/"
             />
 
@@ -195,8 +195,8 @@ export default function HomePage() {
             <TeamMember
               name="Matthew Lee"
               role="Co-Founder"
-              school="UIUC '28"
-              tag="Ex-Lunar Media"
+              school="CS + Econ @ UIUC"
+              // tag="Ex-Lunar Media"
               linkedin="https://www.linkedin.com/in/matthew-lee06/"
             />
 
@@ -204,8 +204,8 @@ export default function HomePage() {
             <TeamMember
               name="Daniel Xiang"
               role="Co-Founder"
-              school="UIUC"
-              tag="IMC Prosperity Winner"
+              school="CS + Math @ UIUC"
+              // tag="IMC Prosperity Winner"
               linkedin="https://www.linkedin.com/in/daniel-xiang-570513271/"
             />
 
@@ -213,15 +213,15 @@ export default function HomePage() {
             <TeamMember
               name="Haoran Xu"
               role="Co-Founder"
-              school="UIUC"
-              tag="Prev @ OSG"
-              linkedin="https://www.linkedin.com/in/haoranxu808/"
+              school="CS + Stats @UIUC"
+              // tag="Prev @ OSG"
+              linkedin="https://www.linkedin.com/in/hx888/"
             />
           </div>
 
           <div className="mt-20 text-center border p-8 rounded-2xl border-white/10 bg-white/[0.02]">
             <h4 className="text-xl md:text-2xl text-gray-300 font-light">
-              We’re speaking with accelerators and early-stage investors.
+              Currently speaking with accelerators and early-stage investors.
             </h4>
           </div>
         </div>
