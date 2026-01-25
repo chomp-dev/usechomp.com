@@ -18,11 +18,15 @@ const nextConfig = {
       },
       {
         source: '/backend',
-        destination: 'https://backend-visual.vercel.app/backend'
+        destination: 'https://backend-visual.vercel.app/'
       },
       {
         source: '/backend/:path*',
-        destination: 'https://backend-visual.vercel.app/backend/:path*'
+        destination: 'https://backend-visual.vercel.app/:path*'
+      },
+      {
+        source: '/assets/:path*',
+        destination: 'https://backend-visual.vercel.app/assets/:path*'
       }
     ]
   },
