@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { ArrowRight, Mail, Linkedin } from "lucide-react"
+import { ArrowRight, Mail, Linkedin, Loader2 } from "lucide-react"
+
 
 export default function HomePage() {
   const scrollToDeck = () => {
@@ -156,20 +157,12 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 md:pt-12 px-6">
-            <Button
-              onClick={scrollToDeck}
-              className="bg-white text-black hover:bg-gray-200 text-base md:text-lg px-8 py-6 md:px-10 md:py-7 rounded-full font-medium transition-transform hover:scale-105"
-            >
-              Request deck
-            </Button>
 
             <Button
-              asChild
+              onClick={scrollToDeck}
               className="bg-orange-600 hover:bg-orange-700 text-white border-none text-base md:text-lg px-8 py-6 md:px-10 md:py-7 rounded-full transition-all shadow-lg shadow-orange-900/20 hover:scale-105"
             >
-              <a href="mailto:Business@usechomp.com">
-                Contact us
-              </a>
+              Request Pitch Deck
             </Button>
           </div>
 
@@ -231,51 +224,12 @@ export default function HomePage() {
       <section id="request-deck" className="py-24 px-4 bg-gradient-to-b from-black to-zinc-950 relative z-10">
         <div className="max-w-xl mx-auto">
           <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Request Access</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Request Pitch Deck</h2>
             <p className="text-gray-400">Entrepreneurs, investors, and partners only.</p>
           </div>
 
-          <form className="space-y-4" onSubmit={(e) => {
-            e.preventDefault();
-            // In a real app, handle submission here
-            alert("Thanks — we’ll respond within 24–48h.");
-          }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                placeholder="Name"
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
-                required
-              />
-              <Input
-                placeholder="Firm / Program"
-                className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
-                required
-              />
-            </div>
+          <RequestDeckForm />
 
-            <Input
-              type="email"
-              placeholder="Work Email"
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
-              required
-            />
-
-            <Textarea
-              placeholder="What stage / check size? (Optional)"
-              className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 min-h-[100px] resize-none transition-all focus:bg-white/10"
-            />
-
-            <Button
-              type="submit"
-              className="w-full bg-white text-black hover:bg-gray-200 h-12 text-lg font-medium transition-transform hover:scale-[1.02]"
-            >
-              Request Deck
-            </Button>
-
-            <p className="text-center text-xs text-gray-600 pt-2">
-              We’ll respond within 24–48h.
-            </p>
-          </form>
         </div>
       </section>
 
@@ -300,6 +254,75 @@ export default function HomePage() {
     </div>
   )
 }
+
+function RequestDeckForm() {
+  return (
+    <form
+      action="https://formsubmit.co/business@usechomp.com" // Update this with your logic or alias
+      method="POST"
+      className="space-y-4"
+    >
+
+      {/* Honeypot field for spam protection */}
+      <input type="text" name="_honey" style={{ display: 'none' }} />
+
+      {/* Redirect to custom Thank You page */}
+      <input type="hidden" name="_next" value="http://localhost:3000/thank-you" />
+
+      {/* Disable Captcha if desired, or keep enabled */}
+      {/* <input type="hidden" name="_captcha" value="false" /> */}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Input
+            name="name"
+            placeholder="Name"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
+            required
+          />
+        </div>
+        <div className="space-y-2">
+          <Input
+            name="firm"
+            placeholder="Firm / Program"
+            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <Input
+          name="email"
+          type="email"
+          placeholder="Work Email"
+          className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 h-12 transition-all focus:bg-white/10"
+          required
+        />
+      </div>
+
+      <div className="space-y-2">
+        <Textarea
+          name="message"
+          placeholder="What stage / check size? (Optional)"
+          className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 min-h-[100px] resize-none transition-all focus:bg-white/10"
+        />
+      </div>
+
+      <Button
+        type="submit"
+        className="w-full bg-white text-black hover:bg-gray-200 h-12 text-lg font-medium transition-transform hover:scale-[1.02]"
+      >
+        Request Pitch Deck
+      </Button>
+
+      <p className="text-center text-xs text-gray-600 pt-2">
+        We’ll respond within 24–48h.
+      </p>
+    </form>
+  )
+}
+
 
 function TeamMember({ name, role, school, tag, linkedin }: { name: string, role: string, school: string, tag: string, linkedin?: string }) {
   return (
