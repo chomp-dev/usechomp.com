@@ -15,6 +15,14 @@ const nextConfig = {
       {
         source: '/demo/:path*',
         destination: 'https://chomp-demo.vercel.app/demo/:path*'
+      },
+      {
+        source: '/backend',
+        destination: 'https://backend-visual.vercel.app/backend'
+      },
+      {
+        source: '/backend/:path*',
+        destination: 'https://backend-visual.vercel.app/backend/:path*'
       }
     ]
   },
