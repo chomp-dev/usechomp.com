@@ -1,7 +1,8 @@
 
 import React, { useRef } from 'react';
 import { RoundedBox, Html, Stars } from '@react-three/drei';
-import { useFrame, useCurrentFrame } from 'remotion';
+import { useFrame } from '@react-three/fiber';
+import { useCurrentFrame } from 'remotion';
 import { interpolate, useVideoConfig } from 'remotion';
 import * as THREE from 'three';
 import { FeedScene } from './FeedScene';
