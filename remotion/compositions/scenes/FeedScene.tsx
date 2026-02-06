@@ -64,7 +64,7 @@ export const FeedScene = ({ frame }: { frame: number }) => {
     );
 
     return (
-        <div className="w-full h-full bg-black font-sans relative overflow-hidden text-white">
+        <div className="w-full h-full bg-black font-sans relative overflow-hidden text-white rounded-[inherit]">
             {/* --- TOP BAR --- */}
             <div className="absolute top-12 left-0 right-0 z-30 flex justify-center gap-6 text-sm font-semibold opacity-90 shadow-black/50 drop-shadow-md">
                 <span className="opacity-50">Following</span>

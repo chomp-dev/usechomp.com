@@ -52,12 +52,7 @@ export function PhoneModel({ frame }: { frame: number }) {
         return <RetentionScene frame={frame - (feedDuration + mapDuration + businessDuration)} />;
     };
 
-    // Calculate Exact Dimensions
-    // Geometry is 2.0 x 4.2. We want high pixel density.
-    const PPU = 200; // Pixels Per Unit
-    const screenWidth = 2.0 * PPU; // 400px
-    const screenHeight = 4.2 * PPU; // 840px
-    // The Html component uses a 1/PPU scale to map pixels back to units.
+
 
     return (
         <group ref={group}>
@@ -77,13 +72,13 @@ export function PhoneModel({ frame }: { frame: number }) {
                 transform
                 occlude={false} // Force visibility
                 position={[0, 0, 0.19]} // Sit clearly on top (Backing face is at ~0.18)
-                scale={1 / PPU * 1.01} // Scale down by PPU + 1% slight overlap to prevent gaps
+                distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: `${screenWidth}px`,
-                    height: `${screenHeight}px`,
+                    width: '336px',
+                    height: '706px',
                     background: '#FFFBF7',
-                    borderRadius: '40px', // Matches 0.15 radius * PPU approx? 0.15 * 200 = 30px. Let's use 32px
+                    borderRadius: '24px',
                     overflow: 'hidden',
                     // Safari Fixes
                     transform: 'translateZ(0)', // Force hardware acceleration
