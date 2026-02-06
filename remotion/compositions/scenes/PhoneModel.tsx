@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import { FeedScene } from './FeedScene';
 import { MapScene } from './MapScene';
 import { BusinessScene } from './BusinessScene';
+import { RetentionScene } from './RetentionScene';
 
 export function PhoneModel() {
     const frame = useCurrentFrame();
@@ -15,15 +16,17 @@ export function PhoneModel() {
     const group = useRef<THREE.Group>(null);
 
     // Sequence Timing
-    const feedDuration = 4 * fps;    // 0s - 4s
-    const mapDuration = 4 * fps;     // 4s - 8s
-    const businessDuration = 3 * fps;// 8s - 11s
+    // Sequence Timing
+    const feedDuration = 4 * fps;       // 0s - 4s
+    const mapDuration = 4 * fps;        // 4s - 8s
+    const businessDuration = 3 * fps;   // 8s - 11s
+    const retentionDuration = 4 * fps;  // 11s - 15s
 
     // Interpolate Rotation based on phase
     const rotationY = interpolate(
         frame,
         [0, feedDuration, feedDuration + 30, feedDuration + mapDuration, feedDuration + mapDuration + 30],
-        [0, 0.2, Math.PI / 2, Math.PI / 2, 0], // Rotate 90deg for map phase? or just tilt
+        [0, 0.2, Math.PI / 2, Math.PI / 2, 0], // Rotate 90deg for map phase
         { extrapolateRight: 'clamp' }
     );
 
@@ -39,7 +42,8 @@ export function PhoneModel() {
     const CurrentScene = () => {
         if (frame < feedDuration) return <FeedScene />;
         if (frame < feedDuration + mapDuration) return <MapScene />;
-        return <BusinessScene />;
+        if (frame < feedDuration + mapDuration + businessDuration) return <BusinessScene />;
+        return <RetentionScene />;
     };
 
     return (

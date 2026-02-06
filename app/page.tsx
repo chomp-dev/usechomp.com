@@ -20,6 +20,24 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FFFBF7] text-zinc-900 font-sans selection:bg-orange-200">
 
+      {/* --- HEADER --- */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#FFFBF7]/80 backdrop-blur-md border-b border-orange-100/50">
+        <div className="flex items-center gap-2">
+          {/* Logo Simulation: Bubbly Orange Text */}
+          <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-orange-600 drop-shadow-sm" style={{ fontFamily: '"Cooper Black", "Chunky", serif' }}>
+            Chomp
+          </h1>
+        </div>
+
+        <Button
+          className="rounded-full bg-zinc-900 text-white hover:bg-orange-600 transition-colors"
+          size="sm"
+          onClick={() => document.getElementById('request-deck')?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Get in touch
+        </Button>
+      </header>
+
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 

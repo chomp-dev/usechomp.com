@@ -1,108 +1,122 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Player } from "@remotion/player"
+import { Player, PlayerRef } from "@remotion/player"
 import { MainDemo } from "@/remotion/compositions/MainDemo"
 
 export function DemoSection() {
     const [step, setStep] = useState(0)
+    const playerRef = useRef<PlayerRef>(null)
+    const [isHovering, setIsHovering] = useState(false)
 
-    // Sync the text description with the known video timings
+    // Timings: Feed(0-4s), Map(4-8s), Business(8-11s), Retention(11-15s)
+    // Total 15s = 450 frames @ 30fps
+    const STAGE_DURATIONS = [4000, 4000, 3000, 4000]
+    const STAGE_STARTS = [0, 4000, 8000, 11000]
+
     useEffect(() => {
-        // Sync logic: Total loop is 11s (330 frames / 30fps)
-        // Feed: 0-4s, Map: 4-8s, Business: 8-11s
-        const loopDuration = 11000
+        if (isHovering) return; // Pause auto-advance on hover
 
-        const updateStep = () => {
-            setStep(0)
-            setTimeout(() => setStep(1), 4000)
-            setTimeout(() => setStep(2), 8000)
-        }
+        const loopDuration = 15000
+        const interval = setInterval(() => {
+            const currentTime = playerRef.current?.getCurrentFrame() || 0;
+            const timeInSeconds = currentTime / 30;
 
-        updateStep() // Initial run
-        const loop = setInterval(updateStep, loopDuration)
+            // Simple state sync based on video time
+            if (timeInSeconds < 4) setStep(0)
+            else if (timeInSeconds < 8) setStep(1)
+            else if (timeInSeconds < 11) setStep(2)
+            else setStep(3)
 
-        return () => {
-            clearInterval(loop)
-        }
-    }, [])
+        }, 100)
+
+        return () => clearInterval(interval)
+    }, [isHovering])
+
+    const handleStepClick = (index: number) => {
+        setStep(index)
+        playerRef.current?.seekTo(STAGE_STARTS[index] / 1000 * 30) // seconds -> frames
+    }
 
     const scrollToDeck = () => {
-        const element = document.getElementById('request-deck');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.getElementById('request-deck')?.scrollIntoView({ behavior: 'smooth' });
     };
-
 
     return (
         <section className="py-12 md:py-24 px-4 w-full bg-[#FFFBF7]">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
-                {/* --- LEFT COLUMN: TEXT & PIPELINE --- */}
-                <div className="order-2 lg:order-1 relative pl-8">
+                {/* --- LEFT COLUMN: INTERACTIVE PIPELINE "RACE" --- */}
+                <div
+                    className="order-2 lg:order-1 relative pl-4 md:pl-8"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                >
 
-                    {/* Floating Pipeline Connection Line */}
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-zinc-100 rounded-full overflow-hidden">
+                    {/* Race Track Line */}
+                    <div className="absolute left-0 top-6 bottom-6 w-2 bg-zinc-100 rounded-full overflow-hidden">
+                        {/* Track Markers */}
+                        <div className="absolute top-0 w-full h-px bg-zinc-200" />
+                        <div className="absolute bottom-0 w-full h-px bg-zinc-200" />
+
+                        {/* Liquid Fill */}
                         <div
-                            className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out"
+                            className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out relative"
                             style={{
-                                height: `${((step + 1) / 3) * 100}%`,
-                                boxShadow: '0 0 20px rgba(251, 146, 60, 0.5)'
+                                height: `${((step + 0.5) / 4) * 100}%`,
+                                boxShadow: '0 0 15px rgba(251, 146, 60, 0.4)'
                             }}
-                        />
+                        >
+                            {/* Runner Head */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-orange-600 rounded-full shadow-md translate-y-1/2 z-10" />
+                        </div>
                     </div>
 
-                    <div className="space-y-16 py-4">
-                        {/* Step 1: Discovery */}
-                        <div className={`transition-all duration-500 ${step === 0 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 0 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>01</div>
-                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 0 ? 'text-zinc-900' : 'text-zinc-300'}`}>
-                                    Discovery
-                                </h3>
-                            </div>
-                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
-                                Users discover food simply by <span className="text-orange-600 font-medium">scrolling their feed</span>. No more random searching.
-                            </p>
-                        </div>
-
-                        {/* Step 2: Navigation */}
-                        <div className={`transition-all duration-500 ${step === 1 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 1 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>02</div>
-                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 1 ? 'text-zinc-900' : 'text-zinc-300'}`}>
-                                    Navigation
-                                </h3>
-                            </div>
-                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
-                                One tap to <span className="text-orange-600 font-medium">open the map</span> and find the exact location.
-                            </p>
-                        </div>
-
-                        {/* Step 3: Conversion */}
-                        <div className={`transition-all duration-500 ${step === 2 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 2 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>03</div>
-                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 2 ? 'text-zinc-900' : 'text-zinc-300'}`}>
-                                    Conversion
-                                </h3>
-                            </div>
-                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
-                                Real customers <span className="text-orange-600 font-medium">walking through the door</span>.
-                            </p>
-                        </div>
+                    <div className="space-y-12 py-2">
+                        <PipelineStep
+                            index={0}
+                            step={step}
+                            onClick={() => handleStepClick(0)}
+                            title="Discovery"
+                            desc="Users discover food simply by scrolling their feed."
+                            highlight="scrolling their feed"
+                        />
+                        <PipelineStep
+                            index={1}
+                            step={step}
+                            onClick={() => handleStepClick(1)}
+                            title="Navigation"
+                            desc="One tap to open the map and find the exact location."
+                            highlight="open the map"
+                        />
+                        <PipelineStep
+                            index={2}
+                            step={step}
+                            onClick={() => handleStepClick(2)}
+                            title="Conversion"
+                            desc="Real customers walking through the door."
+                            highlight="walking through the door"
+                        />
+                        <PipelineStep
+                            index={3}
+                            step={step}
+                            onClick={() => handleStepClick(3)}
+                            title="Retention"
+                            desc="Turn one-time visitors into loyal regulars."
+                            highlight="loyal regulars"
+                        />
                     </div>
 
                 </div>
 
                 {/* --- RIGHT COLUMN: 3D PHONE --- */}
-                <div className="order-1 lg:order-2 flex justify-center items-center relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]"> {/* Increased height for padding */}
+                <div className="order-1 lg:order-2 flex justify-center items-center relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
                     <div className="relative w-full h-full flex items-center justify-center scale-90 md:scale-100 lg:scale-110">
                         <Player
+                            ref={playerRef}
                             component={MainDemo}
-                            durationInFrames={330} // 11s * 30fps
+                            durationInFrames={450} // 15s * 30fps
                             compositionWidth={600}
                             compositionHeight={900}
                             fps={30}
@@ -112,7 +126,7 @@ export function DemoSection() {
                                 maxWidth: '500px',
                                 maxHeight: '750px',
                             }}
-                            controls={false} // Hide playback controls
+                            controls={false}
                             loop
                             autoPlay
                         />
@@ -121,10 +135,10 @@ export function DemoSection() {
             </div>
 
             {/* Centered CTA Button */}
-            <div className="pt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+            <div className="pt-16 pb-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
                 <Button
                     onClick={scrollToDeck}
-                    className="bg-orange-600 hover:bg-orange-700 text-white border-none text-xl px-12 py-8 rounded-full transition-all shadow-lg shadow-orange-900/30 hover:scale-105 hover:shadow-orange-900/50"
+                    className="bg-orange-600 hover:bg-orange-700 text-white border-none text-xl px-16 py-8 rounded-full transition-all shadow-xl shadow-orange-900/20 hover:scale-105 hover:shadow-orange-900/40"
                 >
                     Request Pitch Deck
                 </Button>
@@ -133,26 +147,37 @@ export function DemoSection() {
     )
 }
 
-function PipelineStep({ isActive, isCurrent, title, desc, stepNum }: { isActive: boolean, isCurrent: boolean, title: string, desc: string, stepNum: string }) {
+function PipelineStep({ index, step, onClick, title, desc, highlight }: any) {
+    const isActive = step === index;
+    const isPast = step > index;
+
     return (
-        <div className={`relative pl-8 transition-all duration-700 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-30 translate-x-4'}`}>
-            {/* Dot Indicator */}
-            <div className={`absolute left-[-21px] top-1 w-3 h-3 rounded-full border border-black transition-colors duration-500 ${isActive ? 'bg-orange-500 scale-125' : 'bg-gray-800'}`} />
+        <div
+            onClick={onClick}
+            className={`
+                group relative pl-10 cursor-pointer transition-all duration-500
+                ${isActive ? 'opacity-100 scale-100' : 'opacity-50 hover:opacity-80 scale-95'}
+            `}
+        >
+            {/* Step Number Bubble */}
+            <div className={`
+                absolute left-6 top-1 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300
+                ${isActive ? 'bg-orange-600 text-white scale-110 shadow-lg' : isPast ? 'bg-orange-200 text-orange-700' : 'bg-zinc-100 text-zinc-400 group-hover:bg-zinc-200'}
+            `}>
+                0{index + 1}
+            </div>
 
-            {/* Pulsing Ring for current step */}
-            {isCurrent && (
-                <div className="absolute left-[-29px] top-[-7px] w-7 h-7 rounded-full border border-orange-500/50 animate-ping" />
-            )}
-
-            <div className="flex flex-col gap-1">
-                <span className={`text-xs font-bold tracking-widest uppercase mb-1 ${isActive ? 'text-orange-500' : 'text-gray-600'}`}>
-                    Step {stepNum}
-                </span>
-                <h3 className={`text-2xl font-bold transition-colors ${isActive ? 'text-white' : 'text-gray-500'}`}>
+            <div className="space-y-2">
+                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight transition-colors ${isActive ? 'text-zinc-900' : 'text-zinc-300 group-hover:text-zinc-400'}`}>
                     {title}
                 </h3>
-                <p className="text-lg text-gray-400 font-light leading-relaxed max-w-sm">
-                    {desc}
+                <p className={`text-lg transition-colors leading-relaxed font-light ${isActive ? 'text-zinc-600' : 'text-zinc-400'}`}>
+                    {desc.split(highlight).map((part: string, i: number) => (
+                        <span key={i}>
+                            {i > 0 && <span className={`font-medium ${isActive ? 'text-orange-600' : 'text-zinc-400'}`}>{highlight}</span>}
+                            {part}
+                        </span>
+                    ))}
                 </p>
             </div>
         </div>
