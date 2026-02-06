@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Player, PlayerRef } from "@remotion/player"
 import { MainDemo } from "@/remotion/compositions/MainDemo"
+import { motion } from "framer-motion"
 
 export function DemoSection() {
     const [step, setStep] = useState(0)
