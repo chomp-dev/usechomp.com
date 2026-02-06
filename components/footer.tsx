@@ -12,6 +12,9 @@ export function Footer() {
                     <Link href="/support" className="hover:text-orange-600 transition-colors">
                         Support
                     </Link>
+                    <Link href="/privacy" className="hover:text-orange-600 transition-colors">
+                        Privacy
+                    </Link>
                 </div>
 
                 <div className="text-center">

@@ -74,10 +74,10 @@ export function PhoneModel({ frame }: { frame: number }) {
                 distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '300px', // Precise width
-                    height: '610px',
+                    width: '320px', // Increased from 300px
+                    height: '650px', // Increased from 610px
                     background: '#FFFBF7',
-                    borderRadius: '20px', // Slightly tighter radius to fit inside bezel
+                    borderRadius: '24px', // Increased radius to match size
                     overflow: 'hidden',
                 }}
             >

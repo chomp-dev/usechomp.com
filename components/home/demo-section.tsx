@@ -162,7 +162,7 @@ function PipelineStep({ index, step, onClick, title, desc, highlight }: any) {
         <div
             onClick={onClick}
             className={`
-                group relative pl-10 cursor-pointer transition-all duration-500
+                group relative pl-20 cursor-pointer transition-all duration-500
                 ${isActive ? 'opacity-100 scale-100' : 'opacity-50 hover:opacity-80 scale-95'}
             `}
         >
