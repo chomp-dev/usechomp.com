@@ -16,7 +16,6 @@ export function PhoneModel({ frame }: { frame: number }) {
     const group = useRef<THREE.Group>(null);
 
     // Sequence Timing
-    // Sequence Timing
     const feedDuration = 4 * fps;       // 0s - 4s
     const mapDuration = 4 * fps;        // 4s - 8s
     const businessDuration = 3 * fps;   // 8s - 11s
@@ -53,6 +52,13 @@ export function PhoneModel({ frame }: { frame: number }) {
         return <RetentionScene frame={frame - (feedDuration + mapDuration + businessDuration)} />;
     };
 
+    // Calculate Exact Dimensions
+    // Geometry is 2.0 x 4.2. We want high pixel density.
+    const PPU = 200; // Pixels Per Unit
+    const screenWidth = 2.0 * PPU; // 400px
+    const screenHeight = 4.2 * PPU; // 840px
+    // The Html component uses a 1/PPU scale to map pixels back to units.
+
     return (
         <group ref={group}>
             {/* Phone Chassis */}
@@ -71,22 +77,25 @@ export function PhoneModel({ frame }: { frame: number }) {
                 transform
                 occlude={false} // Force visibility
                 position={[0, 0, 0.19]} // Sit clearly on top (Backing face is at ~0.18)
-                distanceFactor={1.5}
+                scale={1 / PPU * 1.01} // Scale down by PPU + 1% slight overlap to prevent gaps
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '390px', // Math: (2.0 / 4.2) ratio ~ 0.47
-                    height: '820px', // 390 / 820 ~ 0.475
+                    width: `${screenWidth}px`,
+                    height: `${screenHeight}px`,
                     background: '#FFFBF7',
-                    borderRadius: '40px', // Increased radius to match larger scale
+                    borderRadius: '40px', // Matches 0.15 radius * PPU approx? 0.15 * 200 = 30px. Let's use 32px
                     overflow: 'hidden',
+                    // Safari Fixes
+                    transform: 'translateZ(0)', // Force hardware acceleration
+                    WebkitMaskImage: '-webkit-radial-gradient(white, black)', // Fix border-radius clipping
                 }}
             >
                 {/* Reset stacking context for contents */}
                 <div className="w-full h-full relative text-zinc-900 bg-[#FFFBF7]">
                     {/* Status Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-6 z-50 flex justify-between px-6 items-center text-[10px] font-bold text-zinc-900 select-none">
+                    <div className="absolute top-0 left-0 right-0 h-10 z-50 flex justify-between px-6 items-center text-xs font-bold text-zinc-900 select-none">
                         <span>9:41</span>
-                        <div className="w-4 h-2.5 bg-zinc-900 rounded-[2px]" />
+                        <div className="w-5 h-3 bg-zinc-900 rounded-[2px]" />
                     </div>
 
                     <CurrentScene />
