@@ -57,13 +57,13 @@ export function DemoSection() {
                     onMouseLeave={() => setIsHovering(false)}
                 >
                     {/* MOTTO HEADLINE */}
-                    <div className="mb-12 pt-2"> {/* Added top padding */}
+                    <div className="mb-12 pt-2 text-left"> {/* Added text-left */}
                         <div className="overflow-visible"> {/* Allow descenders to hang */}
                             <motion.h2
                                 initial={{ y: 20, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
-                                className="text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.1] whitespace-nowrap py-1"
+                                className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.1] whitespace-nowrap py-1"
                             >
                                 From <span className="text-orange-500">Scrolling</span> to <span className="text-orange-500">Strolling</span>
                             </motion.h2>
@@ -89,7 +89,7 @@ export function DemoSection() {
                         </div>
                     </div>
 
-                    <div className="space-y-10 py-2">
+                    <div className="space-y-10 py-2 text-left"> {/* Added text-left */}
                         <PipelineStep
                             index={0}
                             step={step}
