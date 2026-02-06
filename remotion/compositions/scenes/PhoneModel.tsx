@@ -60,7 +60,7 @@ export function PhoneModel() {
                 style={{
                     width: '300px',
                     height: '610px',
-                    background: '#000',
+                    background: '#FFFBF7', // Force Light Theme Background
                     borderRadius: '30px',
                     overflow: 'hidden',
                     pointerEvents: 'none' // Ensure it doesn't block orbit controls if used

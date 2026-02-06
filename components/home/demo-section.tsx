@@ -37,71 +37,87 @@ export function DemoSection() {
 
 
     return (
-        <section className="py-12 md:py-24 px-4 w-full flex flex-col items-center gap-16">
+        <section className="py-12 md:py-24 px-4 w-full bg-[#FFFBF7]">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
+                {/* --- LEFT COLUMN: TEXT & PIPELINE --- */}
+                <div className="order-2 lg:order-1 relative pl-8">
 
-                {/* Left Phase Description - The Pipeline */}
-                <div className="space-y-12 text-center lg:text-left">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white">
-                        From <span className="text-orange-500">Scrolling</span> to <span className="text-orange-500">Strolling</span>.
-                    </h2>
-
-                    {/* Animated Pipeline Container */}
-                    <div className="relative pl-8 border-l border-white/10 ml-4 lg:ml-0 overflow-hidden">
-
-                        {/* Animated Progress Line */}
+                    {/* Floating Pipeline Connection Line */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-zinc-100 rounded-full overflow-hidden">
                         <div
-                            className="absolute left-[-1px] top-0 w-[3px] bg-gradient-to-b from-orange-500 to-orange-600 transition-all duration-1000 ease-linear"
+                            className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out"
                             style={{
-                                height: step === 0 ? '33%' : step === 1 ? '66%' : '100%',
-                                opacity: 1
+                                height: `${((step + 1) / 3) * 100}%`,
+                                boxShadow: '0 0 20px rgba(251, 146, 60, 0.5)'
                             }}
                         />
+                    </div>
 
-                        <div className="flex flex-col gap-12">
-                            <PipelineStep
-                                isActive={step >= 0}
-                                isCurrent={step === 0}
-                                title="Discovery"
-                                desc="Users discover food simply by scrolling their feed."
-                                stepNum="01"
-                            />
-                            <PipelineStep
-                                isActive={step >= 1}
-                                isCurrent={step === 1}
-                                title="Navigation"
-                                desc="One tap to open the map and find the location."
-                                stepNum="02"
-                            />
-                            <PipelineStep
-                                isActive={step >= 2}
-                                isCurrent={step === 2}
-                                title="Conversion"
-                                desc="Real customers walking through the door."
-                                stepNum="03"
-                            />
+                    <div className="space-y-16 py-4">
+                        {/* Step 1: Discovery */}
+                        <div className={`transition-all duration-500 ${step === 0 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 0 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>01</div>
+                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 0 ? 'text-zinc-900' : 'text-zinc-300'}`}>
+                                    Discovery
+                                </h3>
+                            </div>
+                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
+                                Users discover food simply by <span className="text-orange-600 font-medium">scrolling their feed</span>. No more random searching.
+                            </p>
+                        </div>
+
+                        {/* Step 2: Navigation */}
+                        <div className={`transition-all duration-500 ${step === 1 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 1 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>02</div>
+                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 1 ? 'text-zinc-900' : 'text-zinc-300'}`}>
+                                    Navigation
+                                </h3>
+                            </div>
+                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
+                                One tap to <span className="text-orange-600 font-medium">open the map</span> and find the exact location.
+                            </p>
+                        </div>
+
+                        {/* Step 3: Conversion */}
+                        <div className={`transition-all duration-500 ${step === 2 ? 'opacity-100 translate-x-0' : 'opacity-40 translate-x-4'}`}>
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${step >= 2 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' : 'bg-zinc-200 text-zinc-400'}`}>03</div>
+                                <h3 className={`text-3xl md:text-5xl font-bold tracking-tight ${step === 2 ? 'text-zinc-900' : 'text-zinc-300'}`}>
+                                    Conversion
+                                </h3>
+                            </div>
+                            <p className="text-lg text-zinc-500 leading-relaxed font-light pl-12">
+                                Real customers <span className="text-orange-600 font-medium">walking through the door</span>.
+                            </p>
                         </div>
                     </div>
+
                 </div>
 
-                {/* Right Phone Demo Animation */}
-                <div className="flex justify-center perspective-[1000px]">
-                    <div className="relative w-[340px] h-[720px] rounded-[3rem] overflow-hidden shadow-2xl shadow-orange-900/20 transform transition-transform duration-700 hover:rotate-1 hover:scale-[1.02]">
+                {/* --- RIGHT COLUMN: 3D PHONE --- */}
+                <div className="order-1 lg:order-2 flex justify-center items-center relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]"> {/* Increased height for padding */}
+                    <div className="relative w-full h-full flex items-center justify-center scale-90 md:scale-100 lg:scale-110">
                         <Player
                             component={MainDemo}
-                            durationInFrames={330}
+                            durationInFrames={330} // 11s * 30fps
+                            compositionWidth={600}
+                            compositionHeight={900}
                             fps={30}
-                            compositionWidth={800}
-                            compositionHeight={1600}
-                            style={{ width: '100%', height: '100%' }}
-                            controls={false}
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                maxWidth: '500px',
+                                maxHeight: '750px',
+                            }}
+                            controls={false} // Hide playback controls
                             loop
                             autoPlay
                         />
                     </div>
                 </div>
-
             </div>
 
             {/* Centered CTA Button */}
