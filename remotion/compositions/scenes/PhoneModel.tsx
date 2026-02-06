@@ -59,8 +59,9 @@ export function PhoneModel() {
             {/* Dynamic Content Overlay */}
             <Html
                 transform
-                position={[0, 0, 0.25]} // Increased Z significantly to be safe
-                zIndexRange={[100, 0]} // Prioritize this content
+                occlude={false} // Disable occlusion to ensure it always renders on top
+                position={[0, 0, 0.35]} // Push well beyond chassis depth (0.15)
+                zIndexRange={[100, 0]}
                 style={{
                     width: '300px',
                     height: '610px',

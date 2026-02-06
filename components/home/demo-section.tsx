@@ -102,7 +102,7 @@ export function DemoSection() {
                             step={step}
                             onClick={() => handleStepClick(2)}
                             title="Conversion"
-                            desc="Real customers walking through the door."
+                            desc="Real customers walking through the door. We drive foot traffic."
                             highlight="walking through the door"
                         />
                         <PipelineStep
@@ -110,8 +110,8 @@ export function DemoSection() {
                             step={step}
                             onClick={() => handleStepClick(3)}
                             title="Retention"
-                            desc="Users trust us for good food, restaurants trust us for loyal customers."
-                            highlight="loyal customers"
+                            desc="Users trust us for good food. Restaurants trust us for more customer volume."
+                            highlight="more customer volume"
                         />
                     </div>
 
