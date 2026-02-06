@@ -11,33 +11,49 @@ export const BusinessScene = () => {
     const scale = interpolate(frame, [0, 20], [0.5, 1], { extrapolateRight: 'clamp' });
 
     return (
-        <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-center p-6">
+        <div className="w-full h-full bg-zinc-900 flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
+
+            {/* Confetti Background Sim */}
+            {[...Array(20)].map((_, i) => (
+                <div
+                    key={i}
+                    className="absolute w-2 h-2 rounded-full"
+                    style={{
+                        backgroundColor: ['#f97316', '#3b82f6', '#22c55e'][i % 3],
+                        top: interpolate(frame, [0, 60], [Math.random() * 100, Math.random() * 100 + 100]) + '%',
+                        left: Math.random() * 100 + '%',
+                        opacity: interpolate(frame, [0, 40], [1, 0]),
+                        transform: `scale(${Math.random()})`
+                    }}
+                />
+            ))}
 
             <div
-                className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mb-6"
-                style={{ opacity, transform: `scale(${scale})` }}
+                className="w-32 h-32 bg-green-500 rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-green-500/50 z-10"
+                style={{
+                    opacity,
+                    transform: `scale(${scale})`
+                }}
             >
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-500/30">
-                    <Check className="w-8 h-8 stroke-[3]" />
-                </div>
+                <Check className="w-16 h-16 text-white stroke-[4]" />
             </div>
 
             <h3
-                className="text-2xl font-bold text-white mb-2"
+                className="text-3xl font-bold text-white mb-4 drop-shadow-lg"
                 style={{ opacity: interpolate(frame, [10, 30], [0, 1]) }}
             >
-                Customer Arrived!
+                Start Eating!
             </h3>
 
             <div
-                className="flex items-center gap-2 text-green-400 bg-green-900/20 px-4 py-2 rounded-full border border-green-500/20"
+                className="flex items-center gap-3 text-green-400 bg-black/40 px-6 py-3 rounded-xl border border-green-500/30 backdrop-blur-md"
                 style={{
                     opacity: interpolate(frame, [20, 40], [0, 1]),
                     transform: `translateY(${interpolate(frame, [20, 40], [20, 0])}px)`
                 }}
             >
-                <Wallet className="w-4 h-4" />
-                <span className="font-semibold text-sm">Sale Completed</span>
+                <Wallet className="w-5 h-5" />
+                <span className="font-semibold text-lg">Sale Completed</span>
             </div>
 
         </div>

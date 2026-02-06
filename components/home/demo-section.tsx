@@ -36,12 +36,8 @@ export function DemoSection() {
 
 
     return (
-        <section className="py-24 px-4 bg-zinc-950 relative overflow-hidden">
-            {/* Background Gradients */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px]" />
-                <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[100px]" />
-            </div>
+        <section className="py-12 md:py-24 px-4 w-full">
+            {/* Background Gradients Removed - Inherited from Page */}
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
 
@@ -92,7 +88,6 @@ export function DemoSection() {
                             controls={false} // Hide playback controls
                             loop
                             autoPlay
-                            muted
                         />
                     </div>
                 </div>

@@ -140,40 +140,13 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
         </div>
 
-        <div className="relative z-10 space-y-8 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000">
-
-          <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter text-white/95 drop-shadow-2xl">
-            Chomp
-          </h1>
-
-          <div className="space-y-6 px-4">
-            {/* <h2 className="text-sm md:text-xl lg:text-2xl text-gray-400 font-light tracking-[0.2em] uppercase">
-              Stealth startup
-            </h2> */}
-
-            {/* Expanded max-width and adjusted font size for single line */}
-            <p className="text-xl md:text-4xl lg:text-5xl font-light leading-snug w-full mx-auto pt-2 text-gray-100 italic drop-shadow-lg">
-              Revolutionizing Food Discovery
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 md:pt-12 px-6">
-
-            <Button
-              onClick={scrollToDeck}
-              className="bg-orange-600 hover:bg-orange-700 text-white border-none text-base md:text-lg px-8 py-6 md:px-10 md:py-7 rounded-full transition-all shadow-lg shadow-orange-900/20 hover:scale-105"
-            >
-              Request Pitch Deck
-            </Button>
-          </div>
-
+        <div className="relative z-10 w-full pt-12 md:pt-20">
+          <DemoSection />
         </div>
       </section>
 
-
-
       {/* --- DEMO ANIMATION SECTION --- */}
-      <DemoSection />
+      {/* Moved to Hero */}
 
       {/* --- TEAM SECTION --- */}
       <section className="py-24 px-4 bg-black relative z-10">

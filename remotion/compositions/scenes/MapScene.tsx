@@ -32,15 +32,27 @@ export const MapScene = () => {
                 }}
             />
 
-            {/* Destination Pin */}
-            <div className="absolute top-[35%] left-[64%] -translate-x-1/2 -translate-y-[100%]">
-                <div className="relative">
-                    <MapPin className="w-8 h-8 text-orange-500 fill-orange-500 animate-bounce" />
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-white text-black text-[10px] font-bold rounded-full shadow-lg whitespace-nowrap">
+            {/* Destination Pin (Pulsing) */}
+            <div className="absolute top-[35%] left-[64%] -translate-x-1/2 -translate-y-[100%] z-20">
+                <div className="relative group">
+                    <MapPin className="w-12 h-12 text-orange-500 fill-orange-500 drop-shadow-2xl animate-bounce" />
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-white text-black text-xs font-bold rounded-lg shadow-xl whitespace-nowrap">
                         Burger Joint
                     </div>
                 </div>
             </div>
+
+            {/* Path Line */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                <line
+                    x1="20%" y1="80%"
+                    x2="64%" y2="35%"
+                    stroke="#3b82f6"
+                    strokeWidth="4"
+                    strokeDasharray="8 4"
+                    className="opacity-50"
+                />
+            </svg>
 
             {/* User Dot */}
             <div

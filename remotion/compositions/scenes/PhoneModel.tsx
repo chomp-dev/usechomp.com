@@ -57,8 +57,8 @@ export function PhoneModel() {
             {/* Dynamic Content Overlay */}
             <Html
                 transform
-                position={[0, 0, 0.17]}
-                occlude
+                position={[0, 0, 0.2]} // Increased Z to avoid z-fighting
+                // occlude // Removed occlude to ensure visibility
                 style={{
                     width: '300px',
                     height: '610px',

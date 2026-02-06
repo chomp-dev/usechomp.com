@@ -15,14 +15,24 @@ export const FeedScene = () => {
                 style={{ transform: `translateY(${scrollY}px)` }}
             >
                 {[1, 2, 3, 4, 5].map(i => (
-                    <div key={i} className="w-full aspect-[9/16] bg-zinc-800 rounded-xl relative border border-white/10 overflow-hidden shrink-0">
+                    <div key={i} className="w-full aspect-[9/16] bg-zinc-800 rounded-xl relative border border-white/10 overflow-hidden shrink-0 shadow-2xl">
                         {/* Fake Video Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-black" />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${i % 3 === 0 ? 'from-orange-500/20 to-red-500/20' :
+                                i % 3 === 1 ? 'from-blue-500/20 to-purple-500/20' :
+                                    'from-green-500/20 to-emerald-500/20'
+                            }`} />
+
+                        {/* Play Button Icon Center */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                            <div className="w-12 h-12 rounded-full border-2 border-white/50 flex items-center justify-center">
+                                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1" />
+                            </div>
+                        </div>
 
                         {/* Content Overlay */}
-                        <div className="absolute inset-0 p-4 flex flex-col justify-end">
-                            <div className="w-3/4 h-3 bg-white/30 rounded mb-2" />
-                            <div className="w-1/2 h-2 bg-white/20 rounded" />
+                        <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+                            <div className="w-3/4 h-3 bg-white/80 rounded mb-2 shadow-sm" />
+                            <div className="w-1/2 h-2 bg-white/60 rounded" />
                         </div>
 
                         {/* Like Button */}
