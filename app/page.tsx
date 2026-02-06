@@ -172,22 +172,7 @@ export default function HomePage() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer className="py-12 border-t border-zinc-200 bg-white text-center relative z-10">
-        <div className="flex flex-col items-center gap-6">
-          <a href="mailto:Business@usechomp.com" className="text-zinc-500 hover:text-orange-600 transition-colors flex items-center gap-2">
-            <Mail className="w-4 h-4" />
-            Business@usechomp.com
-          </a>
-
-          <Link href="/apply" className="text-sm text-orange-600/80 hover:text-orange-500 transition-colors flex items-center gap-1">
-            We are hiring <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <div className="text-xs text-zinc-400 mt-4">
-            © {new Date().getFullYear()} Chomp. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </div >
   )
@@ -257,10 +242,7 @@ function RequestDeckForm() {
       <p className="text-center text-xs text-zinc-500 pt-2">
         We’ll respond within 24–48h.
       </p>
-      </form>
-      
-      <Footer />
-    </main >
+    </form>
   )
 }
 
