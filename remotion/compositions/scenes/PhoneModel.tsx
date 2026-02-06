@@ -81,16 +81,16 @@ export function PhoneModel({ frame }: { frame: number }) {
             {/* Dynamic Content Overlay */}
             <Html
                 transform
-                center // <--- CRITICAL: Centers the element origin at position
+                center
                 occlude={false} // Force visibility
                 position={[0, 0, 0.19]} // Sit clearly on top
-                scale={scaleFactor}
+                distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: `${widthPixels}px`,
-                    height: `${heightPixels}px`,
+                    width: '415px',
+                    height: '870px',
                     background: '#FFFBF7',
-                    borderRadius: '60px', // Scaled radius (matches ~0.15 unit radius at 400 density)
+                    borderRadius: '36px',
                     overflow: 'hidden',
                     // Safari/Mobile Fixes
                     transform: 'translateZ(0)', // Force hardware acceleration
