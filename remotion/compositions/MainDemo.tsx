@@ -55,24 +55,26 @@ export const MainDemo = () => {
                 >
                     {/* LAYER 1: OUTER SILVER FRAME (Premium Metal) */}
                     <div
-                        className="absolute shadow-2xl bg-gradient-to-br from-[#f8f8f8] via-[#d1d1d1] to-[#b0b0b0]"
+                        className="absolute shadow-[0_40px_100px_rgba(0,0,0,0.3)] bg-gradient-to-br from-[#ffffff] via-[#dcdcdc] via-[#f0f0f0] via-[#c0c0c0] to-[#a0a0a0]"
                         style={{
-                            width: '430px',
-                            height: '870px',
+                            width: '432px', // Slightly larger for "lip" effect
+                            height: '872px',
                             borderRadius: '62px',
-                            transform: 'translateZ(-10px)', // Sit slightly back
-                            border: '1px solid rgba(255,255,255,0.5)',
+                            transform: 'translateZ(-10px)',
+                            border: '1px solid rgba(255,255,255,0.8)',
+                            boxShadow: 'inset 0 0 15px rgba(255,255,255,0.5), inset 0 0 2px rgba(0,0,0,0.2)', // Depth cues
                         }}
                     />
 
                     {/* LAYER 2: INNER BLACK BEZEL */}
                     <div
-                        className="absolute bg-[#0a0a0a]"
+                        className="absolute bg-[#0a0a0a] shadow-inner"
                         style={{
-                            width: '416px',
-                            height: '856px',
+                            width: '414px',
+                            height: '854px',
                             borderRadius: '56px',
                             transform: 'translateZ(-2px)',
+                            boxShadow: 'inset 0 0 10px rgba(0,0,0,0.8)', // Extra depth
                         }}
                     />
 
@@ -83,7 +85,7 @@ export const MainDemo = () => {
                             width: '400px',
                             height: '840px',
                             borderRadius: '48px',
-                            transform: 'translateZ(2px)', // Sit slightly forward
+                            transform: 'translateZ(2px)',
                         }}
                     >
                         {/* Status Bar */}
@@ -93,6 +95,15 @@ export const MainDemo = () => {
                         </div>
 
                         <CurrentScene />
+
+                        {/* SUBTLE GLARE LAYER (Layer 4) */}
+                        <div
+                            className="absolute inset-0 z-[60] pointer-events-none opacity-20"
+                            style={{
+                                background: 'linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%)',
+                                transform: 'translateX(-50%) translateY(-50%) rotate(-45deg) scale(2)',
+                            }}
+                        />
                     </div>
 
                     {/* Side Button Simulation (Optional but adds to the look) */}
