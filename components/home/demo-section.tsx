@@ -44,8 +44,8 @@ export function DemoSection() {
     };
 
     return (
-        <section className="py-12 md:py-24 px-4 w-full bg-[#FFFBF7]">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <section className="py-4 md:py-12 px-4 w-full bg-[#FFFBF7] min-h-[85vh] flex flex-col justify-center"> {/* Reduced padding and added min-h */}
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                 {/* --- LEFT COLUMN: INTERACTIVE PIPELINE "RACE" --- */}
                 <div
@@ -53,6 +53,13 @@ export function DemoSection() {
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}
                 >
+                    {/* MOTTO HEADLINE */}
+                    <div className="mb-12">
+                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-900 leading-[0.9]">
+                            From <span className="text-orange-600 block">Scrolling</span>
+                            to <span className="text-orange-600 block">Strolling.</span>
+                        </h2>
+                    </div>
 
                     {/* Race Track Line */}
                     <div className="absolute left-0 top-6 bottom-6 w-2 bg-zinc-100 rounded-full overflow-hidden">
@@ -73,7 +80,7 @@ export function DemoSection() {
                         </div>
                     </div>
 
-                    <div className="space-y-12 py-2">
+                    <div className="space-y-10 py-2">
                         <PipelineStep
                             index={0}
                             step={step}
@@ -103,16 +110,17 @@ export function DemoSection() {
                             step={step}
                             onClick={() => handleStepClick(3)}
                             title="Retention"
-                            desc="Turn one-time visitors into loyal regulars."
-                            highlight="loyal regulars"
+                            desc="Users trust us for good food, restaurants trust us for loyal customers."
+                            highlight="loyal customers"
                         />
                     </div>
 
                 </div>
 
                 {/* --- RIGHT COLUMN: 3D PHONE --- */}
-                <div className="order-1 lg:order-2 flex justify-center items-center relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
-                    <div className="relative w-full h-full flex items-center justify-center scale-90 md:scale-100 lg:scale-110">
+                <div className="order-1 lg:order-2 flex justify-center items-center relative h-[600px] md:h-[700px]">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Explicit dimensions for Player to avoid collapse */}
                         <Player
                             ref={playerRef}
                             component={MainDemo}
@@ -123,9 +131,7 @@ export function DemoSection() {
                             style={{
                                 width: '100%',
                                 height: '100%',
-                                maxWidth: '500px',
-                                maxHeight: '750px',
-                            }}
+                            }} // Removed max-width constraints that might be causing issues
                             controls={false}
                             loop
                             autoPlay
@@ -135,7 +141,7 @@ export function DemoSection() {
             </div>
 
             {/* Centered CTA Button */}
-            <div className="pt-16 pb-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+            <div className="pt-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
                 <Button
                     onClick={scrollToDeck}
                     className="bg-orange-600 hover:bg-orange-700 text-white border-none text-xl px-16 py-8 rounded-full transition-all shadow-xl shadow-orange-900/20 hover:scale-105 hover:shadow-orange-900/40"
