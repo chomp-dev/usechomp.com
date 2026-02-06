@@ -49,22 +49,21 @@ export function PhoneModel() {
                 <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
             </RoundedBox>
 
-            {/* Screen Emissive Area */}
-            <RoundedBox args={[2.05, 4.25, 0.01]} radius={0.1} smoothness={4} position={[0, 0, 0.16]}>
-                <meshBasicMaterial color="#000000" />
-            </RoundedBox>
+            {/* Screen Emissive Area - REMOVED to prevent z-fighting/occlusion */}
+            {/* The Html component below creates its own black background */}
 
             {/* Dynamic Content Overlay */}
             <Html
                 transform
-                position={[0, 0, 0.2]} // Increased Z to avoid z-fighting
-                // occlude // Removed occlude to ensure visibility
+                position={[0, 0, 0.25]} // Increased Z significantly to be safe
+                zIndexRange={[100, 0]} // Prioritize this content
                 style={{
                     width: '300px',
                     height: '610px',
                     background: '#000',
                     borderRadius: '30px',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    pointerEvents: 'none' // Ensure it doesn't block orbit controls if used
                 }}
             >
                 <div style={{ width: '100%', height: '100%', position: 'relative' }}>
