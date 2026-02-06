@@ -57,17 +57,15 @@ export function DemoSection() {
                     onMouseLeave={() => setIsHovering(false)}
                 >
                     {/* MOTTO HEADLINE */}
-                    <div className="mb-12">
-                        <div className="overflow-hidden">
+                    <div className="mb-12 pt-2"> {/* Added top padding */}
+                        <div className="overflow-visible"> {/* Allow descenders to hang */}
                             <motion.h2
                                 initial={{ y: 20, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
-                                className="text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-none whitespace-nowrap"
+                                className="text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.1] whitespace-nowrap py-1"
                             >
-                                From <span className="text-orange-600">Scrolling</span> to
-                                <br className="md:hidden" /> {/* Break only on mobile */}
-                                <span className="text-orange-600 block md:inline"> Strolling</span>
+                                From <span className="text-orange-500">Scrolling</span> to <span className="text-orange-500">Strolling</span>
                             </motion.h2>
                         </div>
                     </div>

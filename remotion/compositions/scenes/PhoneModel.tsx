@@ -54,8 +54,8 @@ export function PhoneModel() {
             </RoundedBox>
 
             {/* SCREEN BACKING (Fallback / Background) */}
-            {/* Matches phone shape with rounded corners to prevent peaking */}
-            <RoundedBox args={[2.05, 4.25, 0.1]} radius={0.15} smoothness={4} position={[0, 0, 0.1]}>
+            {/* Perfectly sized to match screen content and radius to prevent peaking */}
+            <RoundedBox args={[2.0, 4.2, 0.05]} radius={0.15} smoothness={4} position={[0, 0, 0.155]}>
                 <meshBasicMaterial color="#FFFBF7" />
             </RoundedBox>
 
@@ -63,14 +63,14 @@ export function PhoneModel() {
             <Html
                 transform
                 occlude={false} // Force visibility
-                position={[0, 0, 0.18]} // Move forward to sit on top of backing
+                position={[0, 0, 0.16]} // Sit directly on top
                 distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '305px', // Slightly wider to cover edges if needed
-                    height: '620px',
+                    width: '300px', // Precise width
+                    height: '610px',
                     background: '#FFFBF7',
-                    borderRadius: '24px',
+                    borderRadius: '20px', // Slightly tighter radius to fit inside bezel
                     overflow: 'hidden',
                 }}
             >

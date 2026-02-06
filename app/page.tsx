@@ -42,23 +42,29 @@ export default function HomePage() {
       {/* --- HERO SECTION --- */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
-        {/* Abstract Network Visualization (Light Mode) */}
-        {/* Abstract Network Visualization (Light Mode) */}
-        <div className="absolute inset-0 opacity-100 pointer-events-none">
-          {/* Radial Mask to fade out center for readability - Tuned to be subtle */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#FFFBF7_100%)] z-10" />
+        <div className="relative z-10 w-full pt-12 md:pt-20">
+          <DemoSection />
+        </div>
+      </section>
 
+      {/* --- DEMO ANIMATION SECTION --- */}
+      {/* Moved to Hero */}
+
+      {/* --- TEAM SECTION --- */}
+      <section className="py-24 px-4 bg-white relative z-10 overflow-hidden">
+        {/* Abstract Network Visualization (Moved Here) */}
+        <div className="absolute inset-0 opacity-60 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#FFFFFF_90%)] z-10" />
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
             <defs>
-              <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(253, 186, 116, 0.6)" /> {/* Much Stronger Orange */}
-                <stop offset="50%" stopColor="rgba(249, 115, 22, 0.8)" /> {/* Deep Orange */}
-                <stop offset="100%" stopColor="rgba(253, 186, 116, 0.6)" />
+              <linearGradient id="line-gradient-feed" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(253, 224, 71, 0.3)" /> {/* Yellow-300 */}
+                <stop offset="50%" stopColor="rgba(251, 191, 36, 0.5)" /> {/* Amber-400 */}
+                <stop offset="100%" stopColor="rgba(253, 224, 71, 0.3)" />
               </linearGradient>
             </defs>
 
-            {/* Background Grid - Stronger Visibility */}
-            <g stroke="rgba(253, 186, 116, 0.6)" strokeWidth="1.5">
+            <g stroke="rgba(252, 211, 77, 0.4)" strokeWidth="1"> {/* Amber-300 lines */}
               <line x1="0" y1="100" x2="800" y2="100" />
               <line x1="0" y1="200" x2="800" y2="200" />
               <line x1="0" y1="300" x2="800" y2="300" />
@@ -73,44 +79,27 @@ export default function HomePage() {
               <line x1="700" y1="0" x2="700" y2="600" />
             </g>
 
-            {/* Network Graph */}
-            <g stroke="url(#line-gradient)" strokeWidth="3" fill="none"> {/* Thicker graph lines */}
-              <path id="path1" d="M 50 500 L 250 400 L 450 200 L 750 100" />
-              <path id="path2" d="M 50 100 L 250 200 L 450 300 L 750 500" />
-              <path id="path3" d="M 400 50 L 400 550" />
+            <g stroke="url(#line-gradient-feed)" strokeWidth="3" fill="none">
+              <path id="path1-team" d="M 50 500 L 250 400 L 450 200 L 750 100" />
+              <path id="path2-team" d="M 50 100 L 250 200 L 450 300 L 750 500" />
             </g>
-
-            {/* Moving Dots - Orange */}
-            <g fill="#F97316">
+            {/* Moving Dots - Softer Yellow/Orange */}
+            <g fill="#F59E0B"> {/* Amber-500 */}
               <circle r="3">
-                <animateMotion repeatCount="indefinite" dur="8s" keyPoints="0;1" keyTimes="0;1">
-                  <mpath href="#path1" />
+                <animateMotion repeatCount="indefinite" dur="12s" keyPoints="0;1" keyTimes="0;1">
+                  <mpath href="#path1-team" />
                 </animateMotion>
               </circle>
               <circle r="3">
-                <animateMotion repeatCount="indefinite" dur="10s" keyPoints="1;0" keyTimes="0;1">
-                  <mpath href="#path2" />
+                <animateMotion repeatCount="indefinite" dur="15s" keyPoints="1;0" keyTimes="0;1">
+                  <mpath href="#path2-team" />
                 </animateMotion>
               </circle>
             </g>
-
           </svg>
-
-          {/* Light Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FFFBF7] via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 w-full pt-12 md:pt-20">
-          <DemoSection />
-        </div>
-      </section>
-
-      {/* --- DEMO ANIMATION SECTION --- */}
-      {/* Moved to Hero */}
-
-      {/* --- TEAM SECTION --- */}
-      <section className="py-24 px-4 bg-white relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto relative z-20">
           <h3 className="text-2xl font-light text-zinc-400 mb-16 text-center uppercase tracking-widest border-b border-zinc-200 pb-8 mx-auto max-w-xs">Meet The Founders</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
