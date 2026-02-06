@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { ArrowRight, Mail, Linkedin, Loader2 } from "lucide-react"
+import { DemoSection } from "@/components/home/demo-section"
 
 
 export default function HomePage() {
@@ -169,89 +170,94 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- TEAM SECTION --- */}
-      <section className="py-24 px-4 bg-black relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-2xl font-light text-gray-500 mb-16 text-center uppercase tracking-widest border-b border-white/10 pb-8 mx-auto max-w-xs">Meet The Founders</h3>
+    </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Brian Li */}
-            <TeamMember
-              name="Brian Li"
-              role="Co-Founder"
-              school="CS @ UIUC"
-              // tag="Incoming SWE @ Roblox"
-              linkedin="https://www.linkedin.com/in/librianli/"
-            />
+      {/* --- DEMO ANIMATION SECTION --- */ }
+  <DemoSection />
 
-            {/* Matthew Lee */}
-            <TeamMember
-              name="Matthew Lee"
-              role="Co-Founder"
-              school="Econ @ UIUC"
-              // tag="Ex-Lunar Media"
-              linkedin="https://www.linkedin.com/in/matthew-lee06/"
-            />
+  {/* --- TEAM SECTION --- */ }
+  <section className="py-24 px-4 bg-black relative z-10">
+    <div className="max-w-6xl mx-auto">
+      <h3 className="text-2xl font-light text-gray-500 mb-16 text-center uppercase tracking-widest border-b border-white/10 pb-8 mx-auto max-w-xs">Meet The Founders</h3>
 
-            {/* Daniel Xiang */}
-            <TeamMember
-              name="Daniel Xiang"
-              role="Co-Founder"
-              school="CS + Math @ UIUC"
-              // tag="IMC Prosperity Winner"
-              linkedin="https://www.linkedin.com/in/daniel-xiang-570513271/"
-            />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Brian Li */}
+        <TeamMember
+          name="Brian Li"
+          role="Co-Founder"
+          school="CS @ UIUC"
+          // tag="Incoming SWE @ Roblox"
+          linkedin="https://www.linkedin.com/in/librianli/"
+        />
 
-            {/* Haoran Xu */}
-            <TeamMember
-              name="Haoran Xu"
-              role="Co-Founder"
-              school="CS + Stats @UIUC"
-              // tag="Prev @ OSG"
-              linkedin="https://www.linkedin.com/in/hx888/"
-            />
-          </div>
+        {/* Matthew Lee */}
+        <TeamMember
+          name="Matthew Lee"
+          role="Co-Founder"
+          school="Econ @ UIUC"
+          // tag="Ex-Lunar Media"
+          linkedin="https://www.linkedin.com/in/matthew-lee06/"
+        />
 
-          <div className="mt-20 text-center border p-8 rounded-2xl border-white/10 bg-white/[0.02]">
-            <h4 className="text-xl md:text-2xl text-gray-300 font-light">
-              Currently speaking with accelerators and early-stage investors.
-            </h4>
-          </div>
-        </div>
-      </section>
+        {/* Daniel Xiang */}
+        <TeamMember
+          name="Daniel Xiang"
+          role="Co-Founder"
+          school="CS + Math @ UIUC"
+          // tag="IMC Prosperity Winner"
+          linkedin="https://www.linkedin.com/in/daniel-xiang-570513271/"
+        />
 
-      {/* --- REQUEST DECK FORM --- */}
-      <section id="request-deck" className="py-24 px-4 bg-gradient-to-b from-black to-zinc-950 relative z-10">
-        <div className="max-w-xl mx-auto">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Request Pitch Deck</h2>
-            <p className="text-gray-400">Entrepreneurs, investors, and partners only.</p>
-          </div>
+        {/* Haoran Xu */}
+        <TeamMember
+          name="Haoran Xu"
+          role="Co-Founder"
+          school="CS + Stats @UIUC"
+          // tag="Prev @ OSG"
+          linkedin="https://www.linkedin.com/in/hx888/"
+        />
+      </div>
 
-          <RequestDeckForm />
+      <div className="mt-20 text-center border p-8 rounded-2xl border-white/10 bg-white/[0.02]">
+        <h4 className="text-xl md:text-2xl text-gray-300 font-light">
+          Currently speaking with accelerators and early-stage investors.
+        </h4>
+      </div>
+    </div>
+  </section>
 
-        </div>
-      </section>
+  {/* --- REQUEST DECK FORM --- */ }
+  <section id="request-deck" className="py-24 px-4 bg-gradient-to-b from-black to-zinc-950 relative z-10">
+    <div className="max-w-xl mx-auto">
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Request Pitch Deck</h2>
+        <p className="text-gray-400">Entrepreneurs, investors, and partners only.</p>
+      </div>
 
-      {/* --- FOOTER --- */}
-      <footer className="py-12 border-t border-white/5 text-center relative z-10">
-        <div className="flex flex-col items-center gap-6">
-          <a href="mailto:Business@usechomp.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
-            <Mail className="w-4 h-4" />
-            Business@usechomp.com
-          </a>
-
-          <Link href="/apply" className="text-sm text-orange-500/80 hover:text-orange-400 transition-colors flex items-center gap-1">
-            We are hiring <ArrowRight className="w-3 h-3" />
-          </Link>
-
-          <div className="text-xs text-gray-700 mt-4">
-            © {new Date().getFullYear()} Chomp. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <RequestDeckForm />
 
     </div>
+  </section>
+
+  {/* --- FOOTER --- */ }
+  <footer className="py-12 border-t border-white/5 text-center relative z-10">
+    <div className="flex flex-col items-center gap-6">
+      <a href="mailto:Business@usechomp.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+        <Mail className="w-4 h-4" />
+        Business@usechomp.com
+      </a>
+
+      <Link href="/apply" className="text-sm text-orange-500/80 hover:text-orange-400 transition-colors flex items-center gap-1">
+        We are hiring <ArrowRight className="w-3 h-3" />
+      </Link>
+
+      <div className="text-xs text-gray-700 mt-4">
+        © {new Date().getFullYear()} Chomp. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+    </div >
   )
 }
 
@@ -324,7 +330,7 @@ function RequestDeckForm() {
 }
 
 
-function TeamMember({ name, role, school, tag, linkedin }: { name: string, role: string, school: string, tag: string, linkedin?: string }) {
+function TeamMember({ name, role, school, tag, linkedin }: { name: string, role: string, school: string, tag?: string, linkedin?: string }) {
   return (
     <div className="group p-8 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 text-center hover:-translate-y-1">
       {/* Optional Placeholder Headshot */}
