@@ -21,44 +21,44 @@ export function PhoneModel({ frame }: { frame: number }) {
     return (
         <group ref={group} rotation={[rotationX, rotationY, 0]}>
             {/* --- PRIMARY BODY --- */}
-            {/* Single high-radius body for that "Premium" curved-edge look */}
-            <RoundedBox args={[2.5, 5.0, 0.25]} radius={0.45} smoothness={4}>
+            {/* Thinner, Silver/White premium look */}
+            <RoundedBox args={[2.5, 5.1, 0.12]} radius={0.45} smoothness={4}>
                 <meshStandardMaterial
-                    color="#080808"
-                    metalness={0.9}
-                    roughness={0.1}
+                    color="#f0f0f0"
+                    metalness={0.7}
+                    roughness={0.2}
                 />
             </RoundedBox>
 
             {/* --- SCREEN BEZEL RING --- */}
-            {/* Slightly smaller and sits on top to define the screen area */}
-            <RoundedBox args={[2.42, 4.92, 0.26]} radius={0.42} smoothness={4} position={[0, 0, 0.01]}>
+            {/* Darker inner ring to define the screen edge */}
+            <RoundedBox args={[2.42, 5.02, 0.13]} radius={0.42} smoothness={4} position={[0, 0, 0.01]}>
                 <meshStandardMaterial
-                    color="#141414"
-                    metalness={1}
-                    roughness={0.05}
+                    color="#e0e0e0"
+                    metalness={0.8}
+                    roughness={0.1}
                 />
             </RoundedBox>
 
             {/* --- EXTERNAL BUTTONS (3D CUES) --- */}
-            {/* Power Button */}
-            <RoundedBox args={[0.04, 0.6, 0.08]} radius={0.02} position={[1.26, 0.8, 0]}>
-                <meshStandardMaterial color="#0a0a0a" />
+            {/* Silver Power Button */}
+            <RoundedBox args={[0.03, 0.6, 0.06]} radius={0.02} position={[1.26, 0.8, 0]}>
+                <meshStandardMaterial color="#d1d1d1" metalness={1} roughness={0.2} />
             </RoundedBox>
 
             {/* Volume Up */}
-            <RoundedBox args={[0.04, 0.3, 0.08]} radius={0.02} position={[-1.26, 1.0, 0]}>
-                <meshStandardMaterial color="#0a0a0a" />
+            <RoundedBox args={[0.03, 0.3, 0.06]} radius={0.02} position={[-1.26, 1.0, 0]}>
+                <meshStandardMaterial color="#d1d1d1" metalness={1} roughness={0.2} />
             </RoundedBox>
 
             {/* Volume Down */}
-            <RoundedBox args={[0.04, 0.3, 0.08]} radius={0.02} position={[-1.26, 0.6, 0]}>
-                <meshStandardMaterial color="#0a0a0a" />
+            <RoundedBox args={[0.03, 0.3, 0.06]} radius={0.02} position={[-1.26, 0.6, 0]}>
+                <meshStandardMaterial color="#d1d1d1" metalness={1} roughness={0.2} />
             </RoundedBox>
 
             {/* Silent Switch */}
-            <RoundedBox args={[0.04, 0.15, 0.08]} radius={0.02} position={[-1.26, 1.3, 0]}>
-                <meshStandardMaterial color="#1a1a1a" />
+            <RoundedBox args={[0.03, 0.15, 0.06]} radius={0.02} position={[-1.26, 1.3, 0]}>
+                <meshStandardMaterial color="#d1d1d1" metalness={1} roughness={0.2} />
             </RoundedBox>
         </group>
     );

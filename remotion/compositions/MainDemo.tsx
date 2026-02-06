@@ -53,24 +53,25 @@ export const MainDemo = () => {
                     }}
                 >
                     <ThreeCanvas width={width} height={height} style={{ backgroundColor: 'transparent' }}>
-                        <ambientLight intensity={0.8} />
-                        <spotLight position={[5, 5, 5]} intensity={1} angle={0.15} penumbra={1} />
-                        <pointLight position={[-5, 5, -5]} intensity={0.5} />
+                        <ambientLight intensity={1.2} /> {/* Brighter for silver look */}
+                        <spotLight position={[5, 5, 5]} intensity={2} angle={0.2} penumbra={1} />
+                        <pointLight position={[-5, 5, -5]} intensity={0.8} />
                         <Suspense fallback={null}>
                             <Environment preset="city" />
                             <PhoneModel frame={frame} />
                         </Suspense>
-                        <PerspectiveCamera makeDefault position={[0, 0, 5.5]} fov={45} />
+                        {/* Moved camera back (6.0) to prevent clipping */}
+                        <PerspectiveCamera makeDefault position={[0, 0, 6.0]} fov={45} />
                     </ThreeCanvas>
                 </div>
 
                 {/* --- LAYER 2: 2D SCREEN CONTENT (Foreground Overlay) --- */}
                 <div
-                    className="relative z-10 bg-[#FFFBF7] shadow-2xl transition-transform duration-75 ease-out"
+                    className="relative z-10 bg-[#FFFBF7] shadow-xl transition-transform duration-75 ease-out"
                     style={{
-                        width: '392px',
-                        height: '820px',
-                        borderRadius: '48px',
+                        width: '380px', // Re-tuned width
+                        height: '790px', // Re-tuned height to prevent clipping
+                        borderRadius: '44px',
                         overflow: 'hidden',
                         transform: `
                             translateY(${floatY}px) 
@@ -78,7 +79,7 @@ export const MainDemo = () => {
                             rotateX(${rotationX * (180 / Math.PI)}deg)
                         `,
                         transformStyle: 'preserve-3d',
-                        border: '1px solid rgba(0,0,0,0.1)'
+                        border: '1px solid rgba(0,0,0,0.05)'
                     }}
                 >
                     {/* Status Bar */}
