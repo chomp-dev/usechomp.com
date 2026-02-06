@@ -1,12 +1,9 @@
-import { ThreeCanvas } from '@remotion/three';
 import { useVideoConfig, AbsoluteFill, useCurrentFrame } from 'remotion';
-import { Environment, OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { PhoneModel } from './scenes/PhoneModel';
 import { FeedScene } from './scenes/FeedScene';
 import { MapScene } from './scenes/MapScene';
 import { BusinessScene } from './scenes/BusinessScene';
 import { RetentionScene } from './scenes/RetentionScene';
-import { Suspense } from 'react';
+import React from 'react';
 
 export const MainDemo = () => {
     const { width, height, fps } = useVideoConfig(); // Added fps
@@ -32,54 +29,17 @@ export const MainDemo = () => {
         return <RetentionScene frame={frame - (feedDuration + mapDuration + businessDuration)} />; // Fixed: Pass relative frame
     };
 
-    // Unified Animation Logic (Shared by 3D and 2D)
-    const floatY = Math.cos(frame / 45) * 15; // Vertical bob
-    const rotationY = Math.sin(frame / 45) * 0.15; // Horizontal rotation
-    const rotationX = Math.cos(frame / 45) * 0.05; // Subtle pitch
-
     return (
         <AbsoluteFill style={{ backgroundColor: 'transparent' }}>
-            <div
-                className="w-full h-full relative flex items-center justify-center overflow-visible"
-                style={{
-                    perspective: '1200px', // Creates 3D space for children
-                }}
-            >
-                {/* --- LAYER 1: 3D PHONE CHASSIS (Background) --- */}
+            <div className="w-full h-full flex items-center justify-center p-8">
+                {/* --- STANDALONE SCREEN CONTENT --- */}
                 <div
-                    className="absolute inset-0 z-0 pointer-events-none"
+                    className="relative bg-[#FFFBF7] shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden"
                     style={{
-                        transform: `translateY(${floatY}px)`,
-                    }}
-                >
-                    <ThreeCanvas width={width} height={height} style={{ backgroundColor: 'transparent' }}>
-                        <ambientLight intensity={1.2} /> {/* Brighter for silver look */}
-                        <spotLight position={[5, 5, 5]} intensity={2} angle={0.2} penumbra={1} />
-                        <pointLight position={[-5, 5, -5]} intensity={0.8} />
-                        <Suspense fallback={null}>
-                            <Environment preset="city" />
-                            <PhoneModel frame={frame} />
-                        </Suspense>
-                        {/* Moved camera back (6.0) to prevent clipping */}
-                        <PerspectiveCamera makeDefault position={[0, 0, 6.0]} fov={45} />
-                    </ThreeCanvas>
-                </div>
-
-                {/* --- LAYER 2: 2D SCREEN CONTENT (Foreground Overlay) --- */}
-                <div
-                    className="relative z-10 bg-[#FFFBF7] shadow-xl transition-transform duration-75 ease-out"
-                    style={{
-                        width: '380px', // Re-tuned width
-                        height: '790px', // Re-tuned height to prevent clipping
-                        borderRadius: '44px',
-                        overflow: 'hidden',
-                        transform: `
-                            translateY(${floatY}px) 
-                            rotateY(${rotationY * (180 / Math.PI)}deg)
-                            rotateX(${rotationX * (180 / Math.PI)}deg)
-                        `,
-                        transformStyle: 'preserve-3d',
-                        border: '1px solid rgba(0,0,0,0.05)'
+                        width: '420px',
+                        height: '860px',
+                        borderRadius: '54px',
+                        border: '8px solid #1a1a1a', // Simple consistent bezel
                     }}
                 >
                     {/* Status Bar */}
@@ -90,7 +50,6 @@ export const MainDemo = () => {
 
                     <CurrentScene />
                 </div>
-
             </div>
         </AbsoluteFill>
     );
