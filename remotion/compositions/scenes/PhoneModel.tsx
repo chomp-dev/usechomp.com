@@ -75,10 +75,10 @@ export function PhoneModel({ frame }: { frame: number }) {
                 distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '336px',
-                    height: '706px',
+                    width: '370px',
+                    height: '780px',
                     background: '#FFFBF7',
-                    borderRadius: '24px',
+                    borderRadius: '32px', // Slightly larger radius
                     overflow: 'hidden',
                     // Safari Fixes
                     transform: 'translateZ(0)', // Force hardware acceleration

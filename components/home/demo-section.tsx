@@ -50,15 +50,27 @@ export function DemoSection() {
         <section className="py-4 md:py-12 px-4 w-full bg-[#FFFBF7] min-h-[85vh] flex flex-col justify-center"> {/* Reduced padding and added min-h */}
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
+                {/* --- MOBILE MOTTO (Visible on small screens, positioned above phone) --- */}
+                <div className="lg:hidden col-span-1 ordder-0 mb-8 px-4">
+                    <motion.h2
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-3xl sm:text-4xl font-black text-zinc-900 tracking-tight leading-[1.1] text-center"
+                    >
+                        From <span className="text-amber-500">Scrolling</span> to <span className="text-amber-500">Strolling</span>
+                    </motion.h2>
+                </div>
+
                 {/* --- LEFT COLUMN: INTERACTIVE PIPELINE "RACE" --- */}
                 <div
                     className="order-2 lg:order-1 relative pl-4 md:pl-8"
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}
                 >
-                    {/* MOTTO HEADLINE */}
-                    <div className="mb-12 pt-2 text-left"> {/* Added text-left */}
-                        <div className="overflow-visible"> {/* Allow descenders to hang */}
+                    {/* DESKTOP MOTTO (Hidden on mobile) */}
+                    <div className="hidden lg:block mb-12 pt-2 text-left">
+                        <div className="overflow-visible">
                             <motion.h2
                                 initial={{ y: 20, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
