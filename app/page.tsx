@@ -42,18 +42,18 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
         {/* Abstract Network Visualization (Light Mode) */}
-        <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div className="absolute inset-0 opacity-100 pointer-events-none"> {/* Increased container opacity */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(251, 146, 60, 0.1)" />
-                <stop offset="50%" stopColor="rgba(251, 146, 60, 0.4)" />
-                <stop offset="100%" stopColor="rgba(251, 146, 60, 0.1)" />
+                <stop offset="0%" stopColor="rgba(253, 186, 116, 0.3)" /> {/* Orange-300 */}
+                <stop offset="50%" stopColor="rgba(251, 146, 60, 0.6)" /> {/* Orange-400, more opaque */}
+                <stop offset="100%" stopColor="rgba(253, 186, 116, 0.3)" />
               </linearGradient>
             </defs>
 
-            {/* Background Grid - Subtle Orange Tint */}
-            <g stroke="rgba(251, 146, 60, 0.05)" strokeWidth="0.5">
+            {/* Background Grid - Visible Soft Orange */}
+            <g stroke="rgba(253, 186, 116, 0.3)" strokeWidth="1"> {/* Thicker, more visible lines */}
               <line x1="0" y1="100" x2="800" y2="100" />
               <line x1="0" y1="200" x2="800" y2="200" />
               <line x1="0" y1="300" x2="800" y2="300" />
@@ -69,7 +69,7 @@ export default function HomePage() {
             </g>
 
             {/* Network Graph */}
-            <g stroke="url(#line-gradient)" strokeWidth="1.5" fill="none">
+            <g stroke="url(#line-gradient)" strokeWidth="3" fill="none"> {/* Thicker graph lines */}
               <path id="path1" d="M 50 500 L 250 400 L 450 200 L 750 100" />
               <path id="path2" d="M 50 100 L 250 200 L 450 300 L 750 500" />
               <path id="path3" d="M 400 50 L 400 550" />

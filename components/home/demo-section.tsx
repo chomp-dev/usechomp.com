@@ -55,9 +55,8 @@ export function DemoSection() {
                 >
                     {/* MOTTO HEADLINE */}
                     <div className="mb-12">
-                        <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-900 leading-[0.9]">
-                            From <span className="text-orange-600 block">Scrolling</span>
-                            to <span className="text-orange-600 block">Strolling.</span>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 leading-tight">
+                            From <span className="text-orange-500 inline">Scrolling</span> to <span className="text-orange-500 inline">Strolling.</span>
                         </h2>
                     </div>
 
@@ -71,7 +70,7 @@ export function DemoSection() {
                         <div
                             className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out relative"
                             style={{
-                                height: `${((step + 0.5) / 4) * 100}%`,
+                                height: `${((step + 1) / 4) * 100}%`,
                                 boxShadow: '0 0 15px rgba(251, 146, 60, 0.4)'
                             }}
                         >

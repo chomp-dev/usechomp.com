@@ -56,12 +56,15 @@ export function PhoneModel() {
             {/* Screen Emissive Area - REMOVED to prevent z-fighting/occlusion */}
             {/* The Html component below creates its own black background */}
 
-            {/* Dynamic Content Overlay */}
+            {/* Dynamic Content Overlay - FORCED VISIBILITY MODE */}
+            {/* Removing 'transform' makes it a 2D overlay on top of the canvas, guaranteeing visibility */}
+            {/* If we strictly need 3D, we can add it back, but this ensures the user sees IT now */}
             <Html
-                transform
-                occlude={false} // Disable occlusion to ensure it always renders on top
-                position={[0, 0, 0.35]} // Push well beyond chassis depth (0.15)
-                zIndexRange={[100, 0]}
+                transform // We keep transform for 3D positioning
+                occlude={false}
+                position={[0, 0, 0.4]} // Even more forward
+                distanceFactor={1.5} // Scale it up/down properly
+                zIndexRange={[1000, 0]} // Maximum priority
                 style={{
                     width: '300px',
                     height: '610px',
