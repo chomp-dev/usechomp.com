@@ -70,7 +70,7 @@ export function PhoneModel({ frame }: { frame: number }) {
             <Html
                 transform
                 occlude={false} // Force visibility
-                position={[0, 0, 0.16]} // Sit directly on top
+                position={[0, 0, 0.19]} // Sit clearly on top (Backing face is at ~0.18)
                 distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
