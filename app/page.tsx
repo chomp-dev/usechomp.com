@@ -257,8 +257,10 @@ function RequestDeckForm() {
       <p className="text-center text-xs text-zinc-500 pt-2">
         We’ll respond within 24–48h.
       </p>
+      </form>
+      
       <Footer />
-    </main>
+    </main >
   )
 }
 
