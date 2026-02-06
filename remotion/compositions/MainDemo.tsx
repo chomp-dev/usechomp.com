@@ -32,47 +32,53 @@ export const MainDemo = () => {
         return <RetentionScene frame={frame - (feedDuration + mapDuration + businessDuration)} />; // Fixed: Pass relative frame
     };
 
-    // Float Animation (Simulated using CSS transform on the container)
-    // We can use frame to calculate the offset to match the previous 3D animation
-    const floatY = Math.cos(frame / 30 / 2) * 10; // Simple bobbing (pixels)
+    // Unified Animation Logic (Shared by 3D and 2D)
+    const floatY = Math.cos(frame / 45) * 15; // Vertical bob
+    const rotationY = Math.sin(frame / 45) * 0.15; // Horizontal rotation
+    const rotationX = Math.cos(frame / 45) * 0.05; // Subtle pitch
 
     return (
         <AbsoluteFill style={{ backgroundColor: 'transparent' }}>
-            {/* FLOATING CONTAINER WRAPPER */}
             <div
-                className="w-full h-full relative flex items-center justify-center"
-                style={{ transform: `translateY(${floatY}px)` }}
+                className="w-full h-full relative flex items-center justify-center overflow-visible"
+                style={{
+                    perspective: '1200px', // Creates 3D space for children
+                }}
             >
-
-                {/* LAYER 1: 3D PHONE CHASSIS (Background Body) */}
-                <div className="absolute inset-0 z-0">
+                {/* --- LAYER 1: 3D PHONE CHASSIS (Background) --- */}
+                <div
+                    className="absolute inset-0 z-0 pointer-events-none"
+                    style={{
+                        transform: `translateY(${floatY}px)`,
+                    }}
+                >
                     <ThreeCanvas width={width} height={height} style={{ backgroundColor: 'transparent' }}>
-                        <ambientLight intensity={0.7} />
-                        <pointLight position={[10, 10, 10]} intensity={1.5} />
+                        <ambientLight intensity={0.8} />
+                        <spotLight position={[5, 5, 5]} intensity={1} angle={0.15} penumbra={1} />
+                        <pointLight position={[-5, 5, -5]} intensity={0.5} />
                         <Suspense fallback={null}>
                             <Environment preset="city" />
                             <PhoneModel frame={frame} />
                         </Suspense>
-                        {/* Adjusted Camera to frame the chassis perfectly behind the div */}
-                        <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
+                        <PerspectiveCamera makeDefault position={[0, 0, 5.5]} fov={45} />
                     </ThreeCanvas>
                 </div>
 
-                {/* LAYER 2: SCREEN CONTENT (Foreground Overlay) */}
-                {/* 
-                    Sizing Strategy:
-                    The 3D Canvas renders the phone. Perspective makes sizing tricky.
-                    However, we know the previous iteration had a 415px x 870px screen "inside" the phone.
-                    Visual testing suggests the phone body is slightly larger.
-                    We will center this div. The 3D phone behind acts as the border.
-                */}
+                {/* --- LAYER 2: 2D SCREEN CONTENT (Foreground Overlay) --- */}
                 <div
-                    className="relative z-10 bg-[#FFFBF7] overflow-hidden"
+                    className="relative z-10 bg-[#FFFBF7] shadow-2xl transition-transform duration-75 ease-out"
                     style={{
-                        width: '385px', // Tuned width to fit inside the visual chassis
-                        height: '810px',
-                        borderRadius: '46px', // Matched to visual bezel curve
-                        boxShadow: '0 0 20px rgba(0,0,0,0.1)' // Inner shadow for depth?
+                        width: '392px',
+                        height: '820px',
+                        borderRadius: '48px',
+                        overflow: 'hidden',
+                        transform: `
+                            translateY(${floatY}px) 
+                            rotateY(${rotationY * (180 / Math.PI)}deg)
+                            rotateX(${rotationX * (180 / Math.PI)}deg)
+                        `,
+                        transformStyle: 'preserve-3d',
+                        border: '1px solid rgba(0,0,0,0.1)'
                     }}
                 >
                     {/* Status Bar */}
@@ -84,9 +90,8 @@ export const MainDemo = () => {
                     <CurrentScene />
                 </div>
 
-                {/* Optional: Glare/Reflection Overlay could go here (Layer 3) */}
-
             </div>
         </AbsoluteFill>
     );
 };
+```
