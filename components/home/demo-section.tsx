@@ -65,7 +65,7 @@ export function DemoSection() {
                                 transition={{ duration: 0.5 }}
                                 className="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-[1.1] whitespace-nowrap py-1"
                             >
-                                From <span className="text-orange-500">Scrolling</span> to <span className="text-orange-500">Strolling</span>
+                                From <span className="text-amber-500">Scrolling</span> to <span className="text-amber-500">Strolling</span>
                             </motion.h2>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export function DemoSection() {
 
                         {/* Liquid Fill */}
                         <div
-                            className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out relative"
+                            className="w-full bg-gradient-to-b from-amber-400 to-amber-600 transition-all duration-500 ease-out relative"
                             style={{
                                 height: `${((step + 1) / 3) * 100}%`, // Updated for 3 steps
                                 boxShadow: '0 0 15px rgba(251, 146, 60, 0.4)'
@@ -145,7 +145,7 @@ export function DemoSection() {
             <div className="pt-12 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
                 <Button
                     onClick={scrollToDeck}
-                    className="bg-orange-600 hover:bg-orange-700 text-white border-none text-xl px-16 py-8 rounded-full transition-all shadow-xl shadow-orange-900/20 hover:scale-105 hover:shadow-orange-900/40"
+                    className="bg-amber-600 hover:bg-amber-700 text-white border-none text-xl px-16 py-8 rounded-full transition-all shadow-xl shadow-amber-900/20 hover:scale-105 hover:shadow-amber-900/40"
                 >
                     Request Pitch Deck
                 </Button>
@@ -181,7 +181,7 @@ function PipelineStep({ index, step, onClick, title, desc, highlight }: any) {
                 <p className={`text-lg transition-colors leading-relaxed font-light ${isActive ? 'text-zinc-600' : 'text-zinc-400'}`}>
                     {desc.split(highlight).map((part: string, i: number) => (
                         <span key={i}>
-                            {i > 0 && <span className={`font-medium ${isActive ? 'text-orange-600' : 'text-zinc-400'}`}>{highlight}</span>}
+                            {i > 0 && <span className={`font-medium ${isActive ? 'text-amber-600' : 'text-zinc-400'}`}>{highlight}</span>}
                             {part}
                         </span>
                     ))}

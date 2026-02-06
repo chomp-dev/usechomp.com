@@ -1,12 +1,13 @@
 
 import { ThreeCanvas } from '@remotion/three';
-import { useVideoConfig, AbsoluteFill } from 'remotion';
+import { useVideoConfig, AbsoluteFill, useCurrentFrame } from 'remotion';
 import { Environment, OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { PhoneModel } from './scenes/PhoneModel';
 import { Suspense } from 'react';
 
 export const MainDemo = () => {
     const { width, height } = useVideoConfig();
+    const frame = useCurrentFrame(); // Capture frame here (in Composition context)
 
     return (
         <AbsoluteFill style={{ backgroundColor: 'transparent' }}>
@@ -16,7 +17,8 @@ export const MainDemo = () => {
 
                 <Suspense fallback={null}>
                     <Environment preset="city" />
-                    <PhoneModel />
+                    {/* Pass frame prop to bridge context gap in R3F */}
+                    <PhoneModel frame={frame} />
                 </Suspense>
 
                 <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />

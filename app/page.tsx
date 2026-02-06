@@ -22,16 +22,16 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#FFFBF7] text-zinc-900 font-sans selection:bg-orange-200">
 
       {/* --- HEADER --- */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#FFFBF7]/80 backdrop-blur-md border-b border-orange-100/50">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#FFFBF7]/80 backdrop-blur-md border-b border-amber-100/50">
         <div className="flex items-center gap-2">
           {/* Logo Simulation: Bubbly Orange Text */}
-          <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-orange-600 drop-shadow-sm" style={{ fontFamily: '"Cooper Black", "Chunky", serif' }}>
+          <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-amber-600 drop-shadow-sm" style={{ fontFamily: '"Cooper Black", "Chunky", serif' }}>
             Chomp
           </h1>
         </div>
 
         <Button
-          className="rounded-full bg-zinc-900 text-white hover:bg-orange-600 transition-colors"
+          className="rounded-full bg-zinc-900 text-white hover:bg-amber-600 transition-colors"
           size="sm"
           onClick={() => document.getElementById('request-deck')?.scrollIntoView({ behavior: 'smooth' })}
         >
@@ -149,7 +149,7 @@ export default function HomePage() {
       </section>
 
       {/* --- REQUEST DECK FORM --- */}
-      <section id="request-deck" className="py-24 px-4 bg-[#FFFBF7] relative z-10 border-t border-orange-100">
+      <section id="request-deck" className="py-24 px-4 bg-[#FFFBF7] relative z-10 border-t border-amber-100">
         <div className="max-w-xl mx-auto">
           <div className="mb-10 text-center">
             <h2 className="text-3xl md:text-4xl font-serif text-zinc-900 mb-4">Request Pitch Deck</h2>
@@ -190,7 +190,7 @@ function RequestDeckForm() {
           <Input
             name="name"
             placeholder="Name"
-            className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-orange-500 focus:ring-orange-500/20"
+            className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-amber-500 focus:ring-orange-500/20"
             required
           />
         </div>
@@ -198,7 +198,7 @@ function RequestDeckForm() {
           <Input
             name="firm"
             placeholder="Firm / Program"
-            className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-orange-500 focus:ring-orange-500/20"
+            className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-amber-500 focus:ring-orange-500/20"
             required
           />
         </div>
@@ -209,7 +209,7 @@ function RequestDeckForm() {
           name="email"
           type="email"
           placeholder="Work Email"
-          className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-orange-500 focus:ring-orange-500/20"
+          className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 h-12 transition-all focus:border-amber-500 focus:ring-orange-500/20"
           required
         />
       </div>
@@ -218,7 +218,7 @@ function RequestDeckForm() {
         <Textarea
           name="message"
           placeholder="What stage / check size? (Optional)"
-          className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 min-h-[100px] resize-none transition-all focus:border-orange-500 focus:ring-orange-500/20"
+          className="bg-white border-zinc-200 text-zinc-900 placeholder:text-zinc-400 min-h-[100px] resize-none transition-all focus:border-amber-500 focus:ring-orange-500/20"
         />
       </div>
 

@@ -3,8 +3,8 @@ import React from 'react';
 import { useCurrentFrame, interpolate } from 'remotion';
 import { Heart, Star, Calendar } from 'lucide-react';
 
-export const RetentionScene = () => {
-    const frame = useCurrentFrame();
+export const RetentionScene = ({ frame }: { frame: number }) => {
+    // const frame = useCurrentFrame();
 
     // Heart Beat Animation
     const scale = interpolate(frame % 30, [0, 15, 30], [1, 1.2, 1]);

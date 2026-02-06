@@ -10,8 +10,8 @@ import { MapScene } from './MapScene';
 import { BusinessScene } from './BusinessScene';
 import { RetentionScene } from './RetentionScene';
 
-export function PhoneModel() {
-    const frame = useCurrentFrame();
+export function PhoneModel({ frame }: { frame: number }) {
+    // const frame = useCurrentFrame(); // Removed hook usage
     const { fps } = useVideoConfig();
     const group = useRef<THREE.Group>(null);
 
@@ -38,12 +38,19 @@ export function PhoneModel() {
         group.current.position.y = Math.cos(time / 2) * 0.1;
     });
 
-    // Content Switching Logic
+    // Content Switching Logic with Relative Timing
     const CurrentScene = () => {
-        if (frame < feedDuration) return <FeedScene />;
-        if (frame < feedDuration + mapDuration) return <MapScene />;
-        if (frame < feedDuration + mapDuration + businessDuration) return <BusinessScene />;
-        return <RetentionScene />;
+        if (frame < feedDuration) {
+            return <FeedScene frame={frame} />;
+        }
+        if (frame < feedDuration + mapDuration) {
+            // Pass relative frame (starts at 0 when this scene starts)
+            return <MapScene frame={frame - feedDuration} />;
+        }
+        if (frame < feedDuration + mapDuration + businessDuration) {
+            return <BusinessScene frame={frame - (feedDuration + mapDuration)} />;
+        }
+        return <RetentionScene frame={frame - (feedDuration + mapDuration + businessDuration)} />;
     };
 
     return (

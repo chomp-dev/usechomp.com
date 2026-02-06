@@ -3,8 +3,8 @@ import React from 'react';
 import { useCurrentFrame, interpolate } from 'remotion';
 import { Search, Map as MapIcon, RotateCw, Plus, User, RefreshCw, MapPin } from 'lucide-react';
 
-export const MapScene = () => {
-    const frame = useCurrentFrame();
+export const MapScene = ({ frame }: { frame: number }) => {
+    // const frame = useCurrentFrame();
 
     // Zoom in effect
     const scale = interpolate(frame, [0, 60], [1, 1.2]);

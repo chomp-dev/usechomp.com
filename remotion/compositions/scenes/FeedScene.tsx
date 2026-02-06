@@ -45,8 +45,8 @@ const VideoCard = ({ color, emoji, title, caption, likes }: { color: string, emo
     </div>
 );
 
-export const FeedScene = () => {
-    const frame = useCurrentFrame();
+export const FeedScene = ({ frame }: { frame: number }) => {
+    // const frame = useCurrentFrame();
 
     // Scroll Logic: Move up 1 screen height every ~40 frames with pauses
     // Frame 0-30: Static (Burger)

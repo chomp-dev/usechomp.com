@@ -3,8 +3,8 @@ import React from 'react';
 import { useCurrentFrame, interpolate, spring } from 'remotion';
 import { Check, Wallet } from 'lucide-react';
 
-export const BusinessScene = () => {
-    const frame = useCurrentFrame();
+export const BusinessScene = ({ frame }: { frame: number }) => {
+    // const frame = useCurrentFrame();
     const fps = 30;
 
     const opacity = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: 'clamp' });
