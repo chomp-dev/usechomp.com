@@ -57,9 +57,18 @@ export function DemoSection() {
                 >
                     {/* MOTTO HEADLINE */}
                     <div className="mb-12">
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-zinc-900 leading-tight">
-                            From <span className="text-orange-500 inline">Scrolling</span> to <span className="text-orange-500 inline">Strolling.</span>
-                        </h2>
+                        <div className="overflow-hidden">
+                            <motion.h2
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                                className="text-4xl md:text-5xl font-black text-zinc-900 tracking-tight leading-none whitespace-nowrap"
+                            >
+                                From <span className="text-orange-600">Scrolling</span> to
+                                <br className="md:hidden" /> {/* Break only on mobile */}
+                                <span className="text-orange-600 block md:inline"> Strolling</span>
+                            </motion.h2>
+                        </div>
                     </div>
 
                     {/* Race Track Line */}

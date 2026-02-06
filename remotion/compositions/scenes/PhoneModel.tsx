@@ -53,23 +53,22 @@ export function PhoneModel() {
                 <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
             </RoundedBox>
 
-            {/* SCREEN BACKING (Fallback if HTML fails) */}
-            {/* White/Cream screen surface to prevent black void */}
-            <mesh position={[0, 0, 0.16]}>
-                <planeGeometry args={[2.0, 4.2]} />
+            {/* SCREEN BACKING (Fallback / Background) */}
+            {/* Matches phone shape with rounded corners to prevent peaking */}
+            <RoundedBox args={[2.05, 4.25, 0.1]} radius={0.15} smoothness={4} position={[0, 0, 0.1]}>
                 <meshBasicMaterial color="#FFFBF7" />
-            </mesh>
+            </RoundedBox>
 
             {/* Dynamic Content Overlay */}
             <Html
                 transform
                 occlude={false} // Force visibility
-                position={[0, 0, 0.17]} // Just slightly above the backing mesh
+                position={[0, 0, 0.18]} // Move forward to sit on top of backing
                 distanceFactor={1.5}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '300px',
-                    height: '610px',
+                    width: '305px', // Slightly wider to cover edges if needed
+                    height: '620px',
                     background: '#FFFBF7',
                     borderRadius: '24px',
                     overflow: 'hidden',
@@ -78,7 +77,7 @@ export function PhoneModel() {
                 {/* Reset stacking context for contents */}
                 <div className="w-full h-full relative text-zinc-900 bg-[#FFFBF7]">
                     {/* Status Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-6 z-50 flex justify-between px-4 items-center text-[10px] font-bold text-zinc-900">
+                    <div className="absolute top-0 left-0 right-0 h-6 z-50 flex justify-between px-6 items-center text-[10px] font-bold text-zinc-900 select-none">
                         <span>9:41</span>
                         <div className="w-4 h-2.5 bg-zinc-900 rounded-[2px]" />
                     </div>

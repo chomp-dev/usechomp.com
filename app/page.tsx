@@ -43,21 +43,22 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
 
         {/* Abstract Network Visualization (Light Mode) */}
+        {/* Abstract Network Visualization (Light Mode) */}
         <div className="absolute inset-0 opacity-100 pointer-events-none">
-          {/* Radial Mask to fade out center for readability */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#FFFBF7_70%)] z-10" />
+          {/* Radial Mask to fade out center for readability - Tuned to be subtle */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#FFFBF7_100%)] z-10" />
 
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(254, 215, 170, 0.4)" /> {/* Orange-200/Yellowish */}
-                <stop offset="50%" stopColor="rgba(253, 186, 116, 0.6)" /> {/* Orange-300 */}
-                <stop offset="100%" stopColor="rgba(254, 215, 170, 0.4)" />
+                <stop offset="0%" stopColor="rgba(253, 186, 116, 0.6)" /> {/* Much Stronger Orange */}
+                <stop offset="50%" stopColor="rgba(249, 115, 22, 0.8)" /> {/* Deep Orange */}
+                <stop offset="100%" stopColor="rgba(253, 186, 116, 0.6)" />
               </linearGradient>
             </defs>
 
-            {/* Background Grid - Softer Yellow-Orange */}
-            <g stroke="rgba(254, 215, 170, 0.5)" strokeWidth="1">
+            {/* Background Grid - Stronger Visibility */}
+            <g stroke="rgba(253, 186, 116, 0.6)" strokeWidth="1.5">
               <line x1="0" y1="100" x2="800" y2="100" />
               <line x1="0" y1="200" x2="800" y2="200" />
               <line x1="0" y1="300" x2="800" y2="300" />
