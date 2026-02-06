@@ -56,7 +56,7 @@ export function DemoSection() {
                         initial={{ y: 20, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.5 }}
-                        className="text-3xl sm:text-4xl font-black text-zinc-900 tracking-tight leading-[1.1] text-center"
+                        className="text-2xl min-[400px]:text-3xl sm:text-4xl font-black text-zinc-900 tracking-tight leading-[1.1] text-center whitespace-nowrap"
                     >
                         From <span className="text-amber-500">Scrolling</span> to <span className="text-amber-500">Strolling</span>
                     </motion.h2>

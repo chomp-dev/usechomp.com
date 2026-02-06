@@ -54,6 +54,17 @@ export function PhoneModel({ frame }: { frame: number }) {
 
 
 
+    // Calculate Exact Dimensions for Perfect Fit
+    // The screen backing geometry is exactly 2.0 units wide x 4.2 units high.
+    // We want a high resolution for the HTML content, e.g., 400 pixels per unit.
+    const SCREEN_WIDTH_UNITS = 2.0;
+    const SCREEN_HEIGHT_UNITS = 4.2;
+    const PIXEL_DENSITY = 400; // High resolution (simulates retina)
+
+    const widthPixels = SCREEN_WIDTH_UNITS * PIXEL_DENSITY; // 800px
+    const heightPixels = SCREEN_HEIGHT_UNITS * PIXEL_DENSITY; // 1680px
+    const scaleFactor = 1 / PIXEL_DENSITY; // Map pixels back to units
+
     return (
         <group ref={group}>
             {/* Phone Chassis */}
@@ -63,24 +74,25 @@ export function PhoneModel({ frame }: { frame: number }) {
 
             {/* SCREEN BACKING (Fallback / Background) */}
             {/* Perfectly sized to match screen content and radius to prevent peaking */}
-            <RoundedBox args={[2.0, 4.2, 0.05]} radius={0.15} smoothness={4} position={[0, 0, 0.155]}>
+            <RoundedBox args={[SCREEN_WIDTH_UNITS, SCREEN_HEIGHT_UNITS, 0.05]} radius={0.15} smoothness={4} position={[0, 0, 0.155]}>
                 <meshBasicMaterial color="#FFFBF7" />
             </RoundedBox>
 
             {/* Dynamic Content Overlay */}
             <Html
                 transform
+                center // <--- CRITICAL: Centers the element origin at position
                 occlude={false} // Force visibility
-                position={[0, 0, 0.19]} // Sit clearly on top (Backing face is at ~0.18)
-                distanceFactor={1.5}
+                position={[0, 0, 0.19]} // Sit clearly on top
+                scale={scaleFactor}
                 zIndexRange={[100, 0]}
                 style={{
-                    width: '415px',
-                    height: '870px',
+                    width: `${widthPixels}px`,
+                    height: `${heightPixels}px`,
                     background: '#FFFBF7',
-                    borderRadius: '36px', // Matched to new larger size
+                    borderRadius: '60px', // Scaled radius (matches ~0.15 unit radius at 400 density)
                     overflow: 'hidden',
-                    // Safari Fixes
+                    // Safari/Mobile Fixes
                     transform: 'translateZ(0)', // Force hardware acceleration
                     WebkitMaskImage: '-webkit-radial-gradient(white, black)', // Fix border-radius clipping
                 }}
@@ -88,9 +100,9 @@ export function PhoneModel({ frame }: { frame: number }) {
                 {/* Reset stacking context for contents */}
                 <div className="w-full h-full relative text-zinc-900 bg-[#FFFBF7]">
                     {/* Status Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-10 z-50 flex justify-between px-6 items-center text-xs font-bold text-zinc-900 select-none">
+                    <div className="absolute top-0 left-0 right-0 h-[40px] z-50 flex justify-between px-8 items-center text-xl font-bold text-zinc-900 select-none">
                         <span>9:41</span>
-                        <div className="w-5 h-3 bg-zinc-900 rounded-[2px]" />
+                        <div className="w-10 h-5 bg-zinc-900 rounded-sm" />
                     </div>
 
                     <CurrentScene />
