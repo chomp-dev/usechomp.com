@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
+import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowRight, Mail, Linkedin, Loader2 } from "lucide-react"
 import { DemoSection } from "@/components/home/demo-section"
@@ -257,6 +258,11 @@ function RequestDeckForm() {
   )
 }
 
+
+<Footer />
+    </main >
+  )
+}
 
 function TeamMember({ name, role, school, tag, linkedin }: { name: string, role: string, school: string, tag?: string, linkedin?: string }) {
   return (
