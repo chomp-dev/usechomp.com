@@ -48,37 +48,39 @@ export function PhoneModel() {
 
     return (
         <group ref={group}>
-            {/* Phone Chassis (iPhone-ish) */}
+            {/* Phone Chassis */}
             <RoundedBox args={[2.2, 4.4, 0.3]} radius={0.2} smoothness={4}>
                 <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
             </RoundedBox>
 
-            {/* Screen Emissive Area - REMOVED to prevent z-fighting/occlusion */}
-            {/* The Html component below creates its own black background */}
+            {/* SCREEN BACKING (Fallback if HTML fails) */}
+            {/* White/Cream screen surface to prevent black void */}
+            <mesh position={[0, 0, 0.16]}>
+                <planeGeometry args={[2.0, 4.2]} />
+                <meshBasicMaterial color="#FFFBF7" />
+            </mesh>
 
-            {/* Dynamic Content Overlay - FORCED VISIBILITY MODE */}
-            {/* Removing 'transform' makes it a 2D overlay on top of the canvas, guaranteeing visibility */}
-            {/* If we strictly need 3D, we can add it back, but this ensures the user sees IT now */}
+            {/* Dynamic Content Overlay */}
             <Html
-                transform // We keep transform for 3D positioning
-                occlude={false}
-                position={[0, 0, 0.4]} // Even more forward
-                distanceFactor={1.5} // Scale it up/down properly
-                zIndexRange={[1000, 0]} // Maximum priority
+                transform
+                occlude={false} // Force visibility
+                position={[0, 0, 0.17]} // Just slightly above the backing mesh
+                distanceFactor={1.5}
+                zIndexRange={[100, 0]}
                 style={{
                     width: '300px',
                     height: '610px',
-                    background: '#FFFBF7', // Force Light Theme Background
-                    borderRadius: '30px',
+                    background: '#FFFBF7',
+                    borderRadius: '24px',
                     overflow: 'hidden',
-                    pointerEvents: 'none' // Ensure it doesn't block orbit controls if used
                 }}
             >
-                <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                {/* Reset stacking context for contents */}
+                <div className="w-full h-full relative text-zinc-900 bg-[#FFFBF7]">
                     {/* Status Bar */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '24px', zIndex: 50, display: 'flex', justifyContent: 'space-between', padding: '0 16px', alignItems: 'center', color: 'white', fontSize: '10px', fontWeight: 'bold' }}>
+                    <div className="absolute top-0 left-0 right-0 h-6 z-50 flex justify-between px-4 items-center text-[10px] font-bold text-zinc-900">
                         <span>9:41</span>
-                        <div style={{ width: '16px', height: '10px', background: 'white', borderRadius: '2px' }} />
+                        <div className="w-4 h-2.5 bg-zinc-900 rounded-[2px]" />
                     </div>
 
                     <CurrentScene />

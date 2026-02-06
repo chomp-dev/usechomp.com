@@ -10,24 +10,26 @@ export function DemoSection() {
     const playerRef = useRef<PlayerRef>(null)
     const [isHovering, setIsHovering] = useState(false)
 
-    // Timings: Feed(0-4s), Map(4-8s), Business(8-11s), Retention(11-15s)
-    // Total 15s = 450 frames @ 30fps
-    const STAGE_DURATIONS = [4000, 4000, 3000, 4000]
-    const STAGE_STARTS = [0, 4000, 8000, 11000]
+    // Updated Timings for 3 Stages: Discovery(Feed), Conversion(Business), Retention(Retention)
+    // We skip the Map phase (4-8s) in the step logic, but keep it in video for flow if needed, 
+    // or we just seek past it.
+    // 0-4s: Feed
+    // 8-11s: Business (Conversion)
+    // 11-15s: Retention
+    const STAGE_STARTS = [0, 8000, 11000] // Skip 4000 (Map)
 
     useEffect(() => {
-        if (isHovering) return; // Pause auto-advance on hover
+        if (isHovering) return;
 
-        const loopDuration = 15000
         const interval = setInterval(() => {
             const currentTime = playerRef.current?.getCurrentFrame() || 0;
             const timeInSeconds = currentTime / 30;
 
-            // Simple state sync based on video time
-            if (timeInSeconds < 4) setStep(0)
-            else if (timeInSeconds < 8) setStep(1)
-            else if (timeInSeconds < 11) setStep(2)
-            else setStep(3)
+            // Sync state to video time
+            if (timeInSeconds < 4) setStep(0)         // Discovery
+            else if (timeInSeconds >= 8 && timeInSeconds < 11) setStep(1) // Conversion
+            else if (timeInSeconds >= 11) setStep(2)  // Retention
+            // Note: 4-8s (Map) doesn't highlight any step (or keeps step 0?)
 
         }, 100)
 
@@ -70,7 +72,7 @@ export function DemoSection() {
                         <div
                             className="w-full bg-gradient-to-b from-orange-400 to-orange-600 transition-all duration-500 ease-out relative"
                             style={{
-                                height: `${((step + 1) / 4) * 100}%`,
+                                height: `${((step + 1) / 3) * 100}%`, // Updated for 3 steps
                                 boxShadow: '0 0 15px rgba(251, 146, 60, 0.4)'
                             }}
                         >
@@ -91,23 +93,15 @@ export function DemoSection() {
                         <PipelineStep
                             index={1}
                             step={step}
-                            onClick={() => handleStepClick(1)}
-                            title="Navigation"
-                            desc="One tap to open the map and find the exact location."
-                            highlight="open the map"
-                        />
-                        <PipelineStep
-                            index={2}
-                            step={step}
-                            onClick={() => handleStepClick(2)}
+                            onClick={() => handleStepClick(1)} // Index 1 is now Conversion
                             title="Conversion"
                             desc="Real customers walking through the door. We drive foot traffic."
                             highlight="walking through the door"
                         />
                         <PipelineStep
-                            index={3}
+                            index={2}
                             step={step}
-                            onClick={() => handleStepClick(3)}
+                            onClick={() => handleStepClick(2)} // Index 2 is now Retention
                             title="Retention"
                             desc="Users trust us for good food. Restaurants trust us for more customer volume."
                             highlight="more customer volume"
