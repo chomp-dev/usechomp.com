@@ -100,10 +100,12 @@ export const FeedScene = ({ frame }: { frame: number }) => {
                     caption="Street style tacos for just $2 on Tuesdays! 🌮🔥"
                     likes="24K"
                 />
+                {/* Spacer to prevent clip under nav */}
+                <div className="h-24 w-full" />
             </div>
 
             {/* Bottom Nav Simulation */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-black z-30 flex justify-around items-center border-t border-white/10 text-white/50">
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-black z-50 flex justify-around items-center border-t border-white/10 text-white/50 transform translate-z-0">
                 <div className="text-white flex flex-col items-center">
                     <div className="w-6 h-6 bg-white rounded-full opacity-20" />
                     <span className="text-[10px] mt-1">Home</span>
