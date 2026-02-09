@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Player, PlayerRef } from "@remotion/player"
 import { MainDemo } from "@/remotion/compositions/MainDemo"
 import { motion } from "framer-motion"
+import { LLMChatWindow } from "./llm-chat-window"
 
 export function DemoSection() {
     const [step, setStep] = useState(0)
@@ -107,7 +108,7 @@ export function DemoSection() {
                             step={step}
                             onClick={() => handleStepClick(0)}
                             title="Discovery"
-                            desc="Users discover food simply by scrolling their feed."
+                            desc="Users discover food by scrolling their feed or searching in ChatGPT."
                             highlight="scrolling their feed"
                         />
                         <PipelineStep
@@ -130,7 +131,7 @@ export function DemoSection() {
 
                 </div>
 
-                {/* --- RIGHT COLUMN: 3D PHONE --- */}
+                {/* --- RIGHT COLUMN: 3D PHONE + LLM CHAT --- */}
                 <div className="order-1 lg:order-2 flex justify-center items-center relative h-[600px] md:h-[700px]">
                     <div className="relative w-full h-full flex items-center justify-center">
                         {/* Explicit dimensions for Player to avoid collapse */}
@@ -149,6 +150,11 @@ export function DemoSection() {
                             loop
                             autoPlay
                         />
+
+                        {/* LLM Chat Window - Floating beside phone */}
+                        <div className="hidden lg:block">
+                            <LLMChatWindow />
+                        </div>
                     </div>
                 </div>
             </div>

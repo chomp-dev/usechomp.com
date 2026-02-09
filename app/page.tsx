@@ -24,10 +24,12 @@ export default function HomePage() {
       {/* --- HEADER --- */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-[#FFFBF7]/80 backdrop-blur-md border-b border-amber-100/50">
         <div className="flex items-center gap-2">
-          {/* Logo Simulation: Bubbly Orange Text */}
-          <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-amber-600 drop-shadow-sm" style={{ fontFamily: '"Cooper Black", "Chunky", serif' }}>
-            Chomp
-          </h1>
+          {/* Chomp Logo */}
+          <img
+            src="/chomp-logo.png"
+            alt="Chomp"
+            className="h-8 md:h-10 w-auto"
+          />
         </div>
 
         <Button
