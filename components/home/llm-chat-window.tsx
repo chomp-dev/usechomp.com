@@ -38,7 +38,7 @@ const bobaResults: ProductResult[] = [
 export function LLMChatWindow() {
     const [showResults, setShowResults] = useState(false)
     const [typedQuery, setTypedQuery] = useState("")
-    const fullQuery = "nearest cheapest boba near me"
+    const fullQuery = "find me the nearest boba based on what i like"
 
     // Typing animation
     useEffect(() => {
@@ -77,13 +77,12 @@ export function LLMChatWindow() {
                     transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
                 }}
             >
-                {/* ChatGPT Header */}
+                {/* LLM Header */}
                 <div className="flex items-center gap-3 px-4 py-3 bg-[#2f2f2f] border-b border-zinc-700/50">
                     <div className="flex items-center gap-2">
                         <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
                             <Sparkles className="w-4 h-4 text-white" />
                         </div>
-                        <span className="text-white font-medium text-sm">ChatGPT</span>
                     </div>
                     <div className="ml-auto flex gap-1.5">
                         <div className="w-3 h-3 rounded-full bg-zinc-600" />
@@ -181,16 +180,7 @@ export function LLMChatWindow() {
                 </svg>
             </div>
 
-            {/* Floating Badge */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.4 }}
-                className="absolute -top-4 -right-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5"
-            >
-                <Sparkles className="w-3 h-3" />
-                AI-Powered
-            </motion.div>
+
         </motion.div>
     )
 }

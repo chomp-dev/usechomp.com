@@ -6,9 +6,6 @@ export function Footer() {
         <footer className="py-12 border-t border-orange-100 bg-[#FFFBF7] relative z-10">
             <div className="container mx-auto px-4 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-8 text-sm font-medium text-zinc-500">
-                    <Link href="/apply" className="px-4 py-2 bg-zinc-900 text-white rounded-full hover:bg-orange-600 transition-colors">
-                        Join Us
-                    </Link>
                     <Link href="/support" className="hover:text-orange-600 transition-colors">
                         Support
                     </Link>

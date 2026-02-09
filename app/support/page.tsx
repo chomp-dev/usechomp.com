@@ -86,8 +86,8 @@ export default function SupportPage() {
                                 Are you hiring?
                             </AccordionTrigger>
                             <AccordionContent className="text-zinc-500 leading-relaxed text-base pb-6">
-                                Yes! We are looking for talented engineers and designers who are passionate about food and social discovery.
-                                Check out our <Link href="/apply" className="text-orange-600 underline decoration-orange-200 hover:decoration-orange-600 transition-all">careers page</Link> or email us directly at business@usechomp.com.
+                                We're not hiring at the moment. We're currently focused on fundraising and building out the core product.
+                                Stay tuned for future opportunities!
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>

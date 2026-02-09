@@ -108,7 +108,7 @@ export function DemoSection() {
                             step={step}
                             onClick={() => handleStepClick(0)}
                             title="Discovery"
-                            desc="Users discover food by scrolling their feed or searching in ChatGPT."
+                            desc="Users discover food by scrolling their feed or searching in a LLM"
                             highlight="scrolling their feed"
                         />
                         <PipelineStep
