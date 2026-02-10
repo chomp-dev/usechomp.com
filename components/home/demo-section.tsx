@@ -18,10 +18,10 @@ export function DemoSection() {
 
                 {/* --- LEFT COLUMN: CTA + WAITLIST --- */}
                 <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
-                    <h1 className="text-4xl md:text-6xl font-black text-zinc-900 tracking-tight leading-[1.1]">
+                    <h1 className="hidden lg:block text-4xl md:text-6xl font-black text-zinc-900 tracking-tight leading-[1.1]">
                         The Future of <span className="text-amber-500">Food Discovery</span>
                     </h1>
-                    <p className="text-xl text-zinc-500 max-w-lg">
+                    <p className="hidden lg:block text-xl text-zinc-500 max-w-lg">
                         Join the waitlist to be the first to experience the new way to find food.
                     </p>
 
@@ -48,7 +48,7 @@ export function DemoSection() {
                             loop
                             autoPlay
                         />
-                        <div className="hidden lg:block">
+                        <div className="block">
                             <LLMChatWindow />
                         </div>
                     </div>
