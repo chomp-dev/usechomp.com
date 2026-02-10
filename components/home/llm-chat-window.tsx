@@ -64,124 +64,125 @@ export function LLMChatWindow() {
     }, [])
 
     return (
-        <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[60%] lg:translate-x-[40%] z-20"
-        >
-            {/* Floating Chat Window */}
-            <div
-                className="w-[320px] md:w-[380px] bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
-                style={{
-                    transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
-                }}
+        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%]">
+            <motion.div
+                initial={{ opacity: 0, x: 50, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
             >
-                {/* LLM Header */}
-                <div className="flex items-center gap-3 px-4 py-3 bg-[#2f2f2f] border-b border-zinc-700/50">
-                    <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
-                            <Sparkles className="w-4 h-4 text-white" />
+                {/* Floating Chat Window */}
+                <div
+                    className="w-[90vw] max-w-[320px] md:w-[380px] md:max-w-none bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
+                    style={{
+                        transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
+                    }}
+                >
+                    {/* LLM Header */}
+                    <div className="flex items-center gap-3 px-4 py-3 bg-[#2f2f2f] border-b border-zinc-700/50">
+                        <div className="flex items-center gap-2">
+                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-white" />
+                            </div>
+                        </div>
+                        <div className="ml-auto flex gap-1.5">
+                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
+                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
+                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
                         </div>
                     </div>
-                    <div className="ml-auto flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                        <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                        <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                    </div>
-                </div>
 
-                {/* Chat Content */}
-                <div className="p-4 space-y-4 min-h-[380px] max-h-[420px] overflow-hidden">
-                    {/* User Message */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex justify-end"
-                    >
-                        <div className="bg-[#2f2f2f] rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[85%]">
-                            <p className="text-white text-sm">
-                                {typedQuery}
-                                <span className="animate-pulse">|</span>
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* AI Response with Products */}
-                    {showResults && (
+                    {/* Chat Content */}
+                    <div className="p-4 space-y-4 min-h-[380px] max-h-[420px] overflow-hidden">
+                        {/* User Message */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="space-y-3"
+                            className="flex justify-end"
                         >
-                            {/* AI Text Response */}
-                            <div className="flex gap-2">
-                                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <Sparkles className="w-3 h-3 text-white" />
-                                </div>
-                                <div className="space-y-3 flex-1">
-                                    <p className="text-zinc-300 text-sm leading-relaxed">
-                                        Found 2 great boba options near you! Here are the cheapest ones with the best ratings:
-                                    </p>
-
-                                    {/* Product Cards */}
-                                    <div className="space-y-2">
-                                        {bobaResults.map((product, i) => (
-                                            <ProductCard key={i} product={product} index={i} />
-                                        ))}
-                                    </div>
-
-                                    {/* Quick Order CTA */}
-                                    <motion.button
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all"
-                                    >
-                                        <ShoppingCart className="w-4 h-4" />
-                                        <span className="text-sm">Order with Chomp</span>
-                                        <ChevronRight className="w-4 h-4" />
-                                    </motion.button>
-                                </div>
+                            <div className="bg-[#2f2f2f] rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[85%]">
+                                <p className="text-white text-sm">
+                                    {typedQuery}
+                                    <span className="animate-pulse">|</span>
+                                </p>
                             </div>
                         </motion.div>
-                    )}
-                </div>
 
-                {/* Input Bar */}
-                <div className="px-4 py-3 bg-[#2f2f2f] border-t border-zinc-700/50">
-                    <div className="flex items-center gap-2 bg-[#404040] rounded-xl px-4 py-2.5">
-                        <input
-                            type="text"
-                            placeholder="Search for food, restaurants..."
-                            className="flex-1 bg-transparent text-zinc-300 text-sm placeholder:text-zinc-500 outline-none"
-                            readOnly
-                        />
-                        <Send className="w-4 h-4 text-zinc-500" />
+                        {/* AI Response with Products */}
+                        {showResults && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4 }}
+                                className="space-y-3"
+                            >
+                                {/* AI Text Response */}
+                                <div className="flex gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <Sparkles className="w-3 h-3 text-white" />
+                                    </div>
+                                    <div className="space-y-3 flex-1">
+                                        <p className="text-zinc-300 text-sm leading-relaxed">
+                                            Found 2 great boba options near you! Here are the cheapest ones with the best ratings:
+                                        </p>
+
+                                        {/* Product Cards */}
+                                        <div className="space-y-2">
+                                            {bobaResults.map((product, i) => (
+                                                <ProductCard key={i} product={product} index={i} />
+                                            ))}
+                                        </div>
+
+                                        {/* Quick Order CTA */}
+                                        <motion.button
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all"
+                                        >
+                                            <ShoppingCart className="w-4 h-4" />
+                                            <span className="text-sm">Order with Chomp</span>
+                                            <ChevronRight className="w-4 h-4" />
+                                        </motion.button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
+
+                    {/* Input Bar */}
+                    <div className="px-4 py-3 bg-[#2f2f2f] border-t border-zinc-700/50">
+                        <div className="flex items-center gap-2 bg-[#404040] rounded-xl px-4 py-2.5">
+                            <input
+                                type="text"
+                                placeholder="Search for food, restaurants..."
+                                className="flex-1 bg-transparent text-zinc-300 text-sm placeholder:text-zinc-500 outline-none"
+                                readOnly
+                            />
+                            <Send className="w-4 h-4 text-zinc-500" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Connector Line to Phone */}
-            <div className="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2">
-                <svg width="60" height="40" viewBox="0 0 60 40" fill="none" className="opacity-40">
-                    <path
-                        d="M60 20 Q30 20, 0 20"
-                        stroke="url(#connector-gradient)"
-                        strokeWidth="2"
-                        strokeDasharray="6 4"
-                    />
-                    <defs>
-                        <linearGradient id="connector-gradient" x1="0" y1="0" x2="60" y2="0">
-                            <stop offset="0%" stopColor="#f59e0b" />
-                            <stop offset="100%" stopColor="#10b981" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </div>
+                {/* Connector Line to Phone */}
+                <div className="absolute left-0 top-1/2 -translate-x-full -translate-y-1/2">
+                    <svg width="60" height="40" viewBox="0 0 60 40" fill="none" className="opacity-40">
+                        <path
+                            d="M60 20 Q30 20, 0 20"
+                            stroke="url(#connector-gradient)"
+                            strokeWidth="2"
+                            strokeDasharray="6 4"
+                        />
+                        <defs>
+                            <linearGradient id="connector-gradient" x1="0" y1="0" x2="60" y2="0">
+                                <stop offset="0%" stopColor="#f59e0b" />
+                                <stop offset="100%" stopColor="#10b981" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
 
 
-        </motion.div>
+            </motion.div>
+        </div>
     )
 }
 
