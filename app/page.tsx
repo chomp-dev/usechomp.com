@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { ArrowRight, Mail, Linkedin, Loader2 } from "lucide-react"
 import { DemoSection } from "@/components/home/demo-section"
+import { PipelineSection } from "@/components/home/pipeline-section"
 
 
 export default function HomePage() {
@@ -42,15 +43,15 @@ export default function HomePage() {
       </header>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden">
-
+      <section className="relative flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-[#FFFBF7]">
         <div className="relative z-10 w-full pt-12 md:pt-20">
           <DemoSection />
         </div>
       </section>
 
-      {/* --- DEMO ANIMATION SECTION --- */}
-      {/* Moved to Hero */}
+      {/* --- PIPELINE SECTION --- */}
+      <PipelineSection />
+
 
       {/* --- TEAM SECTION --- */}
       <section className="py-24 px-4 bg-white relative z-10 overflow-hidden">
