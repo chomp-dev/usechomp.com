@@ -64,16 +64,16 @@ export function LLMChatWindow() {
     }, [])
 
     return (
-        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 -translate-x-[5%] md:-translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%] transition-transform duration-500">
+        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 -translate-x-[30%] md:-translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%] transition-transform duration-500">
             <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="scale-[0.85] md:scale-100 origin-center transition-transform duration-500"
+                className="scale-[0.6] md:scale-100 origin-center transition-transform duration-500"
             >
                 {/* Floating Chat Window */}
                 <div
-                    className="w-[280px] max-w-[90vw] md:w-[380px] md:max-w-none bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
+                    className="w-[240px] max-w-[90vw] md:w-[380px] md:max-w-none bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
                     style={{
                         transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
                     }}
