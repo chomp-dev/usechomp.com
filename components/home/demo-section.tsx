@@ -36,7 +36,7 @@ export function DemoSection() {
                     {/* Desktop: relative positioning as before */}
                     <div className="flex lg:relative items-center justify-center lg:w-full lg:h-full">
                         {/* Phone Player */}
-                        <div className="w-[200px] h-[380px] lg:w-full lg:h-full flex-shrink-0 flex items-center justify-center">
+                        <div className="w-[240px] h-[440px] lg:w-full lg:h-full flex-shrink-0 flex items-center justify-center">
                             <Player
                                 ref={playerRef}
                                 component={MainDemo}
