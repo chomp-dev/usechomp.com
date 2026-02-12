@@ -32,22 +32,24 @@ export function DemoSection() {
 
                 {/* --- RIGHT COLUMN: 3D PHONE + LLM CHAT --- */}
                 <div className="order-1 lg:order-2 flex justify-center items-center relative h-[500px] md:h-[700px] w-full">
-                    <div className="relative w-full h-full flex items-center justify-center">
-                        <Player
-                            ref={playerRef}
-                            component={MainDemo}
-                            durationInFrames={450}
-                            compositionWidth={600}
-                            compositionHeight={900}
-                            fps={30}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                            }}
-                            controls={false}
-                            loop
-                            autoPlay
-                        />
+                    <div className="relative w-full h-full flex items-center justify-center scale-[0.65] md:scale-100 origin-center transition-transform duration-500">
+                        <div className="w-full h-full -translate-x-[25%] md:translate-x-0 transition-transform duration-500 flex items-center justify-center">
+                            <Player
+                                ref={playerRef}
+                                component={MainDemo}
+                                durationInFrames={450}
+                                compositionWidth={600}
+                                compositionHeight={900}
+                                fps={30}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                }}
+                                controls={false}
+                                loop
+                                autoPlay
+                            />
+                        </div>
                         <div className="block">
                             <LLMChatWindow />
                         </div>

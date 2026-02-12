@@ -64,7 +64,7 @@ export function LLMChatWindow() {
     }, [])
 
     return (
-        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%]">
+        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 translate-x-[15%] md:-translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%] transition-transform duration-500">
             <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
