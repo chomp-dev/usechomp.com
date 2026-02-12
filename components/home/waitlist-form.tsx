@@ -104,7 +104,7 @@ export function WaitlistForm() {
                 </p>
             )}
             <p className="text-xs text-zinc-400 text-center">
-                Join 2,000+ others waiting for early access.
+                Join others waiting for early access.
             </p>
         </form>
     )

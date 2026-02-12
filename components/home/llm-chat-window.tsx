@@ -64,44 +64,43 @@ export function LLMChatWindow() {
     }, [])
 
     return (
-        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-1/2 -translate-x-[30%] md:-translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-[40%] transition-transform duration-500">
+        <div className="lg:absolute lg:top-1/2 lg:-translate-y-1/2 z-20 lg:left-auto lg:right-0 lg:translate-x-[40%]">
             <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="scale-[0.6] md:scale-100 origin-center transition-transform duration-500"
             >
                 {/* Floating Chat Window */}
                 <div
-                    className="w-[240px] max-w-[90vw] md:w-[380px] md:max-w-none bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
+                    className="w-[200px] md:w-[380px] bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
                     style={{
                         transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
                     }}
                 >
                     {/* LLM Header */}
-                    <div className="flex items-center gap-3 px-4 py-3 bg-[#2f2f2f] border-b border-zinc-700/50">
+                    <div className="flex items-center gap-2 md:gap-3 px-2 md:px-4 py-2 md:py-3 bg-[#2f2f2f] border-b border-zinc-700/50">
                         <div className="flex items-center gap-2">
-                            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
-                                <Sparkles className="w-4 h-4 text-white" />
+                            <div className="w-5 h-5 md:w-7 md:h-7 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+                                <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-white" />
                             </div>
                         </div>
-                        <div className="ml-auto flex gap-1.5">
-                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                            <div className="w-3 h-3 rounded-full bg-zinc-600" />
+                        <div className="ml-auto flex gap-1 md:gap-1.5">
+                            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-zinc-600" />
+                            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-zinc-600" />
+                            <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-zinc-600" />
                         </div>
                     </div>
 
                     {/* Chat Content */}
-                    <div className="p-4 space-y-4 min-h-[380px] max-h-[420px] overflow-hidden">
+                    <div className="p-2 md:p-4 space-y-2 md:space-y-4 min-h-[200px] md:min-h-[380px] max-h-[260px] md:max-h-[420px] overflow-hidden">
                         {/* User Message */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="flex justify-end"
                         >
-                            <div className="bg-[#2f2f2f] rounded-2xl rounded-br-sm px-4 py-2.5 max-w-[85%]">
-                                <p className="text-white text-sm">
+                            <div className="bg-[#2f2f2f] rounded-xl md:rounded-2xl rounded-br-sm px-2 md:px-4 py-1.5 md:py-2.5 max-w-[85%]">
+                                <p className="text-white text-[10px] md:text-sm">
                                     {typedQuery}
                                     <span className="animate-pulse">|</span>
                                 </p>
@@ -114,20 +113,20 @@ export function LLMChatWindow() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4 }}
-                                className="space-y-3"
+                                className="space-y-1.5 md:space-y-3"
                             >
                                 {/* AI Text Response */}
-                                <div className="flex gap-2">
-                                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                        <Sparkles className="w-3 h-3 text-white" />
+                                <div className="flex gap-1.5 md:gap-2">
+                                    <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <Sparkles className="w-2 h-2 md:w-3 md:h-3 text-white" />
                                     </div>
-                                    <div className="space-y-3 flex-1">
-                                        <p className="text-zinc-300 text-sm leading-relaxed">
-                                            Found 2 great boba options near you! Here are the cheapest ones with the best ratings:
+                                    <div className="space-y-1.5 md:space-y-3 flex-1 min-w-0">
+                                        <p className="text-zinc-300 text-[10px] md:text-sm leading-relaxed">
+                                            Found 2 great boba options near you!
                                         </p>
 
                                         {/* Product Cards */}
-                                        <div className="space-y-2">
+                                        <div className="space-y-1 md:space-y-2">
                                             {bobaResults.map((product, i) => (
                                                 <ProductCard key={i} product={product} index={i} />
                                             ))}
@@ -137,11 +136,11 @@ export function LLMChatWindow() {
                                         <motion.button
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all"
+                                            className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-1.5 md:py-2.5 px-2 md:px-4 rounded-lg md:rounded-xl flex items-center justify-center gap-1 md:gap-2 shadow-lg shadow-amber-500/20 transition-all"
                                         >
-                                            <ShoppingCart className="w-4 h-4" />
-                                            <span className="text-sm">Order with Chomp</span>
-                                            <ChevronRight className="w-4 h-4" />
+                                            <ShoppingCart className="w-3 h-3 md:w-4 md:h-4" />
+                                            <span className="text-[10px] md:text-sm">Order with Chomp</span>
+                                            <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
                                         </motion.button>
                                     </div>
                                 </div>
@@ -150,15 +149,15 @@ export function LLMChatWindow() {
                     </div>
 
                     {/* Input Bar */}
-                    <div className="px-4 py-3 bg-[#2f2f2f] border-t border-zinc-700/50">
-                        <div className="flex items-center gap-2 bg-[#404040] rounded-xl px-4 py-2.5">
+                    <div className="px-2 md:px-4 py-2 md:py-3 bg-[#2f2f2f] border-t border-zinc-700/50">
+                        <div className="flex items-center gap-1 md:gap-2 bg-[#404040] rounded-lg md:rounded-xl px-2 md:px-4 py-1.5 md:py-2.5">
                             <input
                                 type="text"
-                                placeholder="Search for food, restaurants..."
-                                className="flex-1 bg-transparent text-zinc-300 text-sm placeholder:text-zinc-500 outline-none"
+                                placeholder="Search for food..."
+                                className="flex-1 bg-transparent text-zinc-300 text-[10px] md:text-sm placeholder:text-zinc-500 outline-none min-w-0"
                                 readOnly
                             />
-                            <Send className="w-4 h-4 text-zinc-500" />
+                            <Send className="w-3 h-3 md:w-4 md:h-4 text-zinc-500 flex-shrink-0" />
                         </div>
                     </div>
                 </div>
@@ -193,33 +192,33 @@ function ProductCard({ product, index }: { product: ProductResult; index: number
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 + index * 0.15 }}
-            className="bg-[#383838] rounded-xl p-3 hover:bg-[#404040] transition-colors cursor-pointer group"
+            className="bg-[#383838] rounded-lg md:rounded-xl p-1.5 md:p-3 hover:bg-[#404040] transition-colors cursor-pointer group"
         >
-            <div className="flex gap-3">
+            <div className="flex gap-1.5 md:gap-3">
                 {/* Product Image */}
-                <div className="w-12 h-12 bg-[#2f2f2f] rounded-lg flex items-center justify-center text-2xl">
+                <div className="w-8 h-8 md:w-12 md:h-12 bg-[#2f2f2f] rounded-md md:rounded-lg flex items-center justify-center text-base md:text-2xl flex-shrink-0">
                     {product.image}
                 </div>
 
                 {/* Product Info */}
                 <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                        <h4 className="text-white text-sm font-medium truncate">{product.name}</h4>
-                        <span className="text-amber-400 font-bold text-sm flex-shrink-0">{product.price}</span>
+                    <div className="flex items-start justify-between gap-1">
+                        <h4 className="text-white text-[10px] md:text-sm font-medium truncate">{product.name}</h4>
+                        <span className="text-amber-400 font-bold text-[10px] md:text-sm flex-shrink-0">{product.price}</span>
                     </div>
-                    <p className="text-zinc-400 text-xs mt-0.5">{product.restaurant}</p>
+                    <p className="text-zinc-400 text-[8px] md:text-xs mt-0.5">{product.restaurant}</p>
 
                     {/* Meta Info */}
-                    <div className="flex items-center gap-3 mt-1.5 text-xs text-zinc-500">
-                        <span className="flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
+                    <div className="flex items-center gap-1.5 md:gap-3 mt-1 md:mt-1.5 text-[8px] md:text-xs text-zinc-500">
+                        <span className="flex items-center gap-0.5 md:gap-1">
+                            <MapPin className="w-2 h-2 md:w-3 md:h-3" />
                             {product.distance}
                         </span>
-                        <span className="flex items-center gap-1">
-                            <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                        <span className="flex items-center gap-0.5 md:gap-1">
+                            <Star className="w-2 h-2 md:w-3 md:h-3 text-amber-400 fill-amber-400" />
                             {product.rating}
                         </span>
-                        <span className="flex items-center gap-1">
+                        <span className="hidden md:flex items-center gap-1">
                             <Clock className="w-3 h-3" />
                             {product.deliveryTime}
                         </span>
@@ -227,8 +226,8 @@ function ProductCard({ product, index }: { product: ProductResult; index: number
                 </div>
             </div>
 
-            {/* Quick Add Button */}
-            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            {/* Quick Add Button - hidden on mobile */}
+            <div className="hidden md:block mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button className="w-full bg-amber-500/20 text-amber-400 text-xs font-medium py-1.5 rounded-lg hover:bg-amber-500/30 transition-colors">
                     + Add to Cart
                 </button>

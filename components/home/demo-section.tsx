@@ -31,9 +31,11 @@ export function DemoSection() {
                 </div>
 
                 {/* --- RIGHT COLUMN: 3D PHONE + LLM CHAT --- */}
-                <div className="order-1 lg:order-2 flex justify-center items-center relative h-[500px] md:h-[700px] w-full">
-                    <div className="relative w-full h-full flex items-center justify-center scale-[1.0] md:scale-100 origin-center transition-transform duration-500">
-                        <div className="w-full h-full -translate-x-[35%] md:translate-x-0 transition-transform duration-500 flex items-center justify-center">
+                <div className="order-1 lg:order-2 flex justify-center items-center relative h-[500px] md:h-[700px] w-full overflow-hidden">
+                    {/* On mobile: a fixed-size container that holds both elements, centered */}
+                    <div className="relative w-[320px] h-full md:w-full flex items-center justify-center mx-auto">
+                        {/* Phone Player - takes full container on mobile */}
+                        <div className="w-[220px] h-[400px] md:w-full md:h-full flex items-center justify-center">
                             <Player
                                 ref={playerRef}
                                 component={MainDemo}
@@ -50,7 +52,8 @@ export function DemoSection() {
                                 autoPlay
                             />
                         </div>
-                        <div className="block">
+                        {/* Chat Window - positioned within the same container */}
+                        <div className="absolute right-[-40px] top-1/2 -translate-y-1/2 md:relative md:right-auto md:top-auto md:translate-y-0">
                             <LLMChatWindow />
                         </div>
                     </div>
