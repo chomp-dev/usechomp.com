@@ -31,11 +31,12 @@ export function DemoSection() {
                 </div>
 
                 {/* --- RIGHT COLUMN: 3D PHONE + LLM CHAT --- */}
-                <div className="order-1 lg:order-2 flex justify-center items-center relative h-[500px] md:h-[700px] w-full overflow-hidden">
-                    {/* On mobile: a fixed-size container that holds both elements, centered */}
-                    <div className="relative w-[320px] h-full md:w-full flex items-center justify-center mx-auto">
-                        {/* Phone Player - takes full container on mobile */}
-                        <div className="w-[220px] h-[400px] md:w-full md:h-full flex items-center justify-center">
+                <div className="order-1 lg:order-2 flex justify-center items-center relative h-[500px] md:h-[700px] w-full">
+                    {/* Mobile: flex row with negative margin for overlap, naturally centered */}
+                    {/* Desktop: relative positioning as before */}
+                    <div className="flex lg:relative items-center justify-center lg:w-full lg:h-full">
+                        {/* Phone Player */}
+                        <div className="w-[200px] h-[380px] lg:w-full lg:h-full flex-shrink-0 flex items-center justify-center">
                             <Player
                                 ref={playerRef}
                                 component={MainDemo}
@@ -52,8 +53,8 @@ export function DemoSection() {
                                 autoPlay
                             />
                         </div>
-                        {/* Chat Window - positioned within the same container */}
-                        <div className="absolute right-[-40px] top-1/2 -translate-y-1/2 md:relative md:right-auto md:top-auto md:translate-y-0">
+                        {/* Chat Window - negative margin creates overlap on mobile */}
+                        <div className="-ml-[30px] lg:ml-0 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-[40%] self-center flex-shrink-0">
                             <LLMChatWindow />
                         </div>
                     </div>

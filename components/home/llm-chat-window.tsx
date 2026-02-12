@@ -64,7 +64,7 @@ export function LLMChatWindow() {
     }, [])
 
     return (
-        <div className="lg:absolute lg:top-1/2 lg:-translate-y-1/2 z-20 lg:left-auto lg:right-0 lg:translate-x-[40%]">
+        <div className="z-20">
             <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.9 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -72,7 +72,7 @@ export function LLMChatWindow() {
             >
                 {/* Floating Chat Window */}
                 <div
-                    className="w-[200px] md:w-[380px] bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
+                    className="w-[160px] md:w-[380px] bg-[#212121] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-zinc-700/50"
                     style={{
                         transform: 'perspective(1000px) rotateY(-8deg) rotateX(2deg)',
                     }}
@@ -92,7 +92,7 @@ export function LLMChatWindow() {
                     </div>
 
                     {/* Chat Content */}
-                    <div className="p-2 md:p-4 space-y-2 md:space-y-4 min-h-[200px] md:min-h-[380px] max-h-[260px] md:max-h-[420px] overflow-hidden">
+                    <div className="p-2 md:p-4 space-y-2 md:space-y-4 min-h-[160px] md:min-h-[380px] max-h-[220px] md:max-h-[420px] overflow-hidden">
                         {/* User Message */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
